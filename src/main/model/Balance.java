@@ -20,5 +20,7 @@ public class Balance {
         this.value = value;
     }
 
-
+    public Date getDate() {
+        return date;
+    }
 }

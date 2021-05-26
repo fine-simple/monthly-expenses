@@ -16,4 +16,7 @@ public class Wallet {
         return name;
     }
 
+    public int getTotal() {
+        return total;
+    }
 }

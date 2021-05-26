@@ -2,6 +2,7 @@ package main.model;
 
 public class Wallet {
     String name;
-    int balance=0;
-    int remaining=0;
+    int total=0;
+    Balance balance[];
+    Expenses expenses[];
 }

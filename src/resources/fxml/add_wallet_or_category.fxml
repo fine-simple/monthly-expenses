@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox alignment="CENTER" maxHeight="563.0" maxWidth="700.0" minHeight="427.0" minWidth="530.0" prefHeight="563.0" prefWidth="658.0" spacing="60.0" stylesheets="@../stylesheets/dark-theme.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <VBox alignment="CENTER" spacing="10.0">
+         <children>
+            <Label alignment="CENTER" contentDisplay="CENTER" minWidth="400.0" prefHeight="39.0" prefWidth="413.0" text="Add new wallet">
+               <font>
+                  <Font name="System Bold" size="27.0" />
+               </font>
+            </Label>
+            <HBox spacing="10.0">
+               <children>
+                  <TextField fx:id="credit_amount" prefHeight="40.0" prefWidth="250.0" promptText="New Wallet Name" HBox.hgrow="ALWAYS" />
+                  <Button contentDisplay="RIGHT" mnemonicParsing="false" onAction="#add_income" prefHeight="40.0" prefWidth="150.0" text="Add Wallet" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+      <Separator prefWidth="200.0" />
+      <VBox alignment="CENTER" spacing="10.0">
+         <children>
+            <Label alignment="CENTER" minWidth="386.0" prefHeight="39.0" prefWidth="386.0" text="Add new category" VBox.vgrow="ALWAYS">
+               <font>
+                  <Font name="System Bold" size="27.0" />
+               </font>
+            </Label>
+            <HBox spacing="10.0">
+               <children>
+                  <TextField fx:id="credit_amount1" prefHeight="40.0" prefWidth="250.0" promptText="New Category Name" HBox.hgrow="ALWAYS" />
+                  <Button contentDisplay="RIGHT" mnemonicParsing="false" onAction="#add_income" prefHeight="40.0" prefWidth="150.0" text="Add Category" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+   <opaqueInsets>
+      <Insets />
+   </opaqueInsets>
+   <padding>
+      <Insets bottom="35.0" left="80.0" right="80.0" top="35.0" />
+   </padding>
+</VBox>

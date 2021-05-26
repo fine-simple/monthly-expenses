@@ -2,72 +2,34 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox maxHeight="500.0" maxWidth="700.0" minHeight="500.0" minWidth="700.0" prefHeight="500.0" prefWidth="700.0" stylesheets="@../stylesheets/dark-theme.css" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controller.AddIncome">
+<VBox alignment="CENTER" maxHeight="563.0" maxWidth="700.0" minHeight="427.0" minWidth="530.0" prefHeight="563.0" prefWidth="658.0" spacing="10.0" stylesheets="@../stylesheets/dark-theme.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <VBox prefWidth="92.0">
-         <HBox.margin>
-            <Insets bottom="35.0" left="20.0" top="20.0" />
-         </HBox.margin>
+      <Label alignment="CENTER" minWidth="400.0" text="Add new Income" VBox.vgrow="ALWAYS">
+         <font>
+            <Font name="System Bold" size="27.0" />
+         </font>
+      </Label>
+      <HBox spacing="10.0">
          <children>
-            <VBox prefHeight="446.0" spacing="20.0">
-               <children>
-                  <ImageView fitHeight="71.0" fitWidth="127.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../assets/Logo.png" />
-                     </image>
-                  </ImageView>
-                  <Button mnemonicParsing="false" onAction="#add_income" prefHeight="26.0" prefWidth="170.0" text="Add Income">
-                     <VBox.margin>
-                        <Insets top="20.0" />
-                     </VBox.margin>
-                  </Button>
-                  <Button mnemonicParsing="false" onAction="#add_expense" prefHeight="26.0" prefWidth="163.0" text="Add Expense" />
-                  <Button mnemonicParsing="false" onAction="#view_expenses" prefHeight="26.0" prefWidth="168.0" text="View Expenses" />
-                  <Button mnemonicParsing="false" onAction="#remaining_money" prefHeight="26.0" prefWidth="196.0" text="Remaining Money" />
-                  <Button mnemonicParsing="false" onAction="#export_csv" prefHeight="26.0" prefWidth="196.0" text="Export CSV" />
-                  <Label alignment="CENTER" prefHeight="30.0" prefWidth="127.0" text="© Team GEN_1" VBox.vgrow="ALWAYS">
-                     <VBox.margin>
-                        <Insets top="65.0" />
-                     </VBox.margin>
-                  </Label>
-               </children>
-            </VBox>
+            <ComboBox prefHeight="40.0" prefWidth="250.0" promptText="Choose Wallet" HBox.hgrow="ALWAYS" />
+            <TextField fx:id="credit_amount" prefHeight="40.0" prefWidth="250.0" promptText="Amount of money" HBox.hgrow="ALWAYS" />
          </children>
-      </VBox>
-      <VBox alignment="CENTER" maxHeight="563.0" maxWidth="700.0" minHeight="427.0" minWidth="530.0" prefHeight="563.0" prefWidth="658.0" spacing="10.0" stylesheets="@../stylesheets/dark-theme.css">
-         <children>
-            <Label alignment="CENTER" minWidth="400.0" text="Add new Income" VBox.vgrow="ALWAYS">
-               <font>
-                  <Font name="System Bold" size="27.0" />
-               </font>
-            </Label>
-            <HBox spacing="10.0">
-               <children>
-                  <TextField fx:id="cash_amount" prefHeight="40.0" promptText="Cash Amount" HBox.hgrow="ALWAYS" />
-                  <TextField fx:id="credit_amount" prefHeight="40.0" promptText="Credit Amount" HBox.hgrow="ALWAYS" />
-               </children>
-            </HBox>
-            <DatePicker fx:id="date_income" prefHeight="40.0" prefWidth="420.0" promptText="Date" VBox.vgrow="ALWAYS" />
-            <Button contentDisplay="RIGHT" mnemonicParsing="false" onAction="#add_income" prefHeight="40.0" prefWidth="150.0" text="Add" />
-         </children>
-         <opaqueInsets>
-            <Insets />
-         </opaqueInsets>
-         <padding>
-            <Insets bottom="35.0" left="80.0" right="80.0" top="35.0" />
-         </padding>
-      </VBox>
+      </HBox>
+      <DatePicker fx:id="date_income" prefHeight="40.0" prefWidth="500.0" promptText="Date" VBox.vgrow="ALWAYS" />
+      <Button contentDisplay="RIGHT" mnemonicParsing="false" onAction="#add_income" prefHeight="40.0" prefWidth="150.0" text="Add" />
    </children>
+   <opaqueInsets>
+      <Insets />
+   </opaqueInsets>
    <padding>
-      <Insets left="10.0" top="10.0" />
+      <Insets bottom="35.0" left="80.0" right="80.0" top="35.0" />
    </padding>
-</HBox>
+</VBox>

@@ -2,12 +2,12 @@ package main.model;
 
 import java.util.Date;
 
-public class Balance {
+public class Income {
     private int value;
     private Date date;
     public static int totalBalance=0;
 
-    public Balance(int value, Date date) {
+    public Income(int value, Date date) {
         this.value = value;
         this.date = date;
     }

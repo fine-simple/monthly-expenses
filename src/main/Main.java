@@ -15,6 +15,10 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+        // Home Page
+        ScreenController.getInstance().activate("start_page");
+
+        // primary stage settings
         primaryStage.setResizable(false);
         primaryStage.setTitle("Monthly Expenses");
         primaryStage.setScene(ScreenController.getInstance().getScene());

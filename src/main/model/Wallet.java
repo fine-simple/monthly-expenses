@@ -1,15 +1,26 @@
 package main.model;
+
 import java.util.ArrayList;
-import java.util.Map;
-import java.util.TreeMap;
+import java.util.HashMap;
 
 public class Wallet {
     private String name;
-    private int total=0;
-    ArrayList<Balance> balance = new ArrayList<Balance>();
-    Map<String,ArrayList<Expenses>> categories = new TreeMap<>();
+    private int total = 0;
+    private ArrayList<Income> incomes;
+    private HashMap<String, ArrayList<Expenses>> categories;
+
     public Wallet(String name) {
         this.name = name;
+        incomes = new ArrayList<Income>();
+        categories = new HashMap<>();
+    }
+
+    public ArrayList<Income> getIncomes() {
+        return incomes;
+    }
+
+    public HashMap<String, ArrayList<Expenses>> getCategories() {
+        return categories;
     }
 
     public String getName() {

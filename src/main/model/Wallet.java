@@ -1,17 +1,19 @@
 package main.model;
 import java.util.ArrayList;
+import java.util.Map;
+import java.util.TreeMap;
 
 public class Wallet {
-    String name;
+    private String name;
     private int total=0;
-    ArrayList<Balance> balance;
-    ArrayList<Expenses> expenses;
-
-    public int getTotal() {
-        return total;
+    ArrayList<Balance> balance = new ArrayList<Balance>();
+    Map<String,ArrayList<Expenses>> categories = new TreeMap<>();
+    public Wallet(String name) {
+        this.name = name;
     }
 
-    public void setTotal(int total) {
-        this.total = total;
+    public String getName() {
+        return name;
     }
+
 }

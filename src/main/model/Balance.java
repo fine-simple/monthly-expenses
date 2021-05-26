@@ -4,8 +4,13 @@ import java.util.Date;
 
 public class Balance {
     private int value;
-    Date date;
-    static int totalBalance=0;
+    private Date date;
+    public static int totalBalance=0;
+
+    public Balance(int value, Date date) {
+        this.value = value;
+        this.date = date;
+    }
 
     public int getValue() {
         return value;
@@ -16,12 +21,4 @@ public class Balance {
     }
 
 
-
-    public static int getTotalBalance() {
-        return totalBalance;
-    }
-
-    public static void setTotalBalance(int totalBalance) {
-        Balance.totalBalance = totalBalance;
-    }
 }

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+
+
+<HBox alignment="CENTER" maxHeight="70.0" maxWidth="550.0" minHeight="70.0" minWidth="550.0" prefHeight="70.0" prefWidth="550.0" spacing="15.0" stylesheets="@../stylesheets/dark-theme.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label text="\$ Amount">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <Separator orientation="VERTICAL" prefHeight="200.0" />
+      <Label text="DD/MM/YYYY">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <Separator orientation="VERTICAL" prefHeight="200.0" />
+      <Label text="Category">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <Separator orientation="VERTICAL" prefHeight="200.0" />
+      <Label text="Wallet">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+   </children>
+   <padding>
+      <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
+   </padding>
+</HBox>

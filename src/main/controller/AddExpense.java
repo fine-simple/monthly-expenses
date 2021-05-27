@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
+import main.model.Wallet;
 
 public class AddExpense {
     @FXML
@@ -13,9 +14,9 @@ public class AddExpense {
     @FXML
     DatePicker date;
     @FXML
-    ComboBox category;
+    ComboBox<String> category;
     @FXML
-    ComboBox wallet;
+    ComboBox<Wallet> wallet;
 
     @FXML
     void chooseWallet() {

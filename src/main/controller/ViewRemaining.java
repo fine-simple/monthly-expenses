@@ -11,7 +11,7 @@ import javafx.scene.chart.NumberAxis;
 
 public class ViewRemaining implements Initializable {
     @FXML
-    BarChart chart;
+    BarChart<String, Integer> chart;
     @FXML
     CategoryAxis months;
     @FXML

@@ -42,7 +42,7 @@
             </VBox>
          </children>
       </VBox>
-      <VBox alignment="CENTER" maxHeight="563.0" maxWidth="700.0" minHeight="427.0" minWidth="530.0" prefHeight="490.0" prefWidth="512.0" spacing="10.0" stylesheets="@../stylesheets/dark-theme.css">
+      <VBox fx:id="contentVBox" alignment="CENTER" maxHeight="563.0" maxWidth="700.0" minHeight="427.0" minWidth="530.0" prefHeight="490.0" prefWidth="512.0" spacing="10.0" stylesheets="@../stylesheets/dark-theme.css">
          <opaqueInsets>
             <Insets />
          </opaqueInsets>

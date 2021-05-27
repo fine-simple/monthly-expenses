@@ -6,11 +6,11 @@ public class StartPage {
     
     @FXML
     void start() {
-
+        ScreenController.getInstance().activate("navigation");
     }
     
     @FXML
     void members() {
-
+        
     }
 }

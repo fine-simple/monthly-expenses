@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" maxHeight="563.0" maxWidth="700.0" minHeight="427.0" minWidth="530.0" prefHeight="563.0" prefWidth="658.0" spacing="10.0" stylesheets="@../stylesheets/dark-theme.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<VBox alignment="CENTER" maxHeight="563.0" maxWidth="700.0" minHeight="427.0" minWidth="530.0" prefHeight="563.0" prefWidth="658.0" spacing="10.0" stylesheets="@../stylesheets/dark-theme.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controller.AddIncome">
    <children>
       <Label alignment="CENTER" minWidth="400.0" text="Add new Income" VBox.vgrow="ALWAYS">
          <font>
@@ -19,12 +19,12 @@
       </Label>
       <HBox spacing="10.0">
          <children>
-            <ComboBox prefHeight="40.0" prefWidth="250.0" promptText="Choose Wallet" HBox.hgrow="ALWAYS" />
-            <TextField fx:id="credit_amount" prefHeight="40.0" prefWidth="250.0" promptText="Amount of money" HBox.hgrow="ALWAYS" />
+            <ComboBox fx:id="walletCombo" prefHeight="40.0" prefWidth="250.0" promptText="Choose Wallet" HBox.hgrow="ALWAYS" />
+            <TextField fx:id="amountText" prefHeight="40.0" prefWidth="250.0" promptText="Amount of money" HBox.hgrow="ALWAYS" />
          </children>
       </HBox>
-      <DatePicker fx:id="date_income" prefHeight="40.0" prefWidth="500.0" promptText="Date" VBox.vgrow="ALWAYS" />
-      <Button contentDisplay="RIGHT" mnemonicParsing="false" onAction="#add_income" prefHeight="40.0" prefWidth="150.0" text="Add" />
+      <DatePicker fx:id="incomeDate" prefHeight="40.0" prefWidth="500.0" promptText="Date" VBox.vgrow="ALWAYS" />
+      <Button contentDisplay="RIGHT" mnemonicParsing="false" onAction="#addIncome" prefHeight="40.0" prefWidth="150.0" text="Add" />
    </children>
    <opaqueInsets>
       <Insets />

@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" maxHeight="563.0" maxWidth="700.0" minHeight="427.0" minWidth="530.0" prefHeight="563.0" prefWidth="658.0" spacing="10.0" stylesheets="@../stylesheets/dark-theme.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<VBox alignment="CENTER" maxHeight="563.0" maxWidth="700.0" minHeight="427.0" minWidth="530.0" prefHeight="563.0" prefWidth="658.0" spacing="10.0" stylesheets="@../stylesheets/dark-theme.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controller.AddExpense">
    <children>
       <Label alignment="CENTER" minWidth="400.0" text="Add new Expense" VBox.vgrow="ALWAYS">
          <font>
@@ -22,10 +22,10 @@
          </opaqueInsets>
       </TextField>
       <TextField fx:id="amount" prefHeight="40.0" promptText="Amount" />
-      <DatePicker fx:id="date_expense" prefHeight="40.0" prefWidth="500.0" promptText="Date" VBox.vgrow="ALWAYS" />
-      <ComboBox fx:id="wallet_choose1" onAction="#wallet_choose" prefHeight="40.0" prefWidth="500.0" promptText="Category" />
-      <ComboBox fx:id="wallet_choose" onAction="#wallet_choose" prefHeight="40.0" prefWidth="500.0" promptText="Wallet" />
-      <Button contentDisplay="RIGHT" mnemonicParsing="false" onAction="#add_expense" prefHeight="40.0" prefWidth="150.0" text="Add" />
+      <DatePicker fx:id="date" prefHeight="40.0" prefWidth="500.0" promptText="Date" VBox.vgrow="ALWAYS" />
+      <ComboBox fx:id="category" onAction="#chooseCategory" prefHeight="40.0" prefWidth="500.0" promptText="Category" />
+      <ComboBox fx:id="wallet" onAction="#chooseWallet" prefHeight="40.0" prefWidth="500.0" promptText="Wallet" />
+      <Button contentDisplay="RIGHT" mnemonicParsing="false" onAction="#addExpense" prefHeight="40.0" prefWidth="150.0" text="Add" />
    </children>
    <opaqueInsets>
       <Insets />

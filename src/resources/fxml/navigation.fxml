@@ -27,7 +27,7 @@
                         <Insets top="10.0" />
                      </VBox.margin>
                   </Button>
-                  <Button mnemonicParsing="false" onAction="#addWxpense" prefHeight="26.0" prefWidth="163.0" text="Add Expense" />
+                  <Button mnemonicParsing="false" onAction="#addExpense" prefHeight="26.0" prefWidth="163.0" text="Add Expense" />
                   <Button mnemonicParsing="false" onAction="#addWallet" prefHeight="26.0" prefWidth="163.0" text="Add Wallet" />
                   <Button mnemonicParsing="false" onAction="#addCategory" prefHeight="26.0" prefWidth="163.0" text="Add Category" />
                   <Button mnemonicParsing="false" onAction="#viewExpenses" prefHeight="26.0" prefWidth="168.0" text="View Expenses" />

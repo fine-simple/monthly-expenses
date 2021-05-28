@@ -21,41 +21,21 @@
          <children>
             <HBox alignment="CENTER" spacing="5.0">
                <children>
-                  <CheckBox mnemonicParsing="false" selected="true">
-                     <font>
-                        <Font size="16.0" />
-                     </font>
-                  </CheckBox>
                   <ComboBox prefWidth="150.0" promptText="Month" />
                </children>
             </HBox>
             <HBox alignment="CENTER" spacing="5.0">
                <children>
-                  <CheckBox mnemonicParsing="false">
-                     <font>
-                        <Font size="16.0" />
-                     </font>
-                  </CheckBox>
                   <ComboBox prefWidth="150.0" promptText="Year" />
                </children>
             </HBox>
             <HBox alignment="CENTER" spacing="5.0">
                <children>
-                  <CheckBox mnemonicParsing="false">
-                     <font>
-                        <Font size="16.0" />
-                     </font>
-                  </CheckBox>
                   <ComboBox prefWidth="150.0" promptText="Category" />
                </children>
             </HBox>
             <HBox alignment="CENTER" spacing="5.0">
                <children>
-                  <CheckBox mnemonicParsing="false" selected="true">
-                     <font>
-                        <Font size="16.0" />
-                     </font>
-                  </CheckBox>
                   <ComboBox prefWidth="150.0" promptText="Wallet" />
                </children>
             </HBox>

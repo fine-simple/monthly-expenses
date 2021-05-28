@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<HBox maxHeight="500.0" maxWidth="700.0" minHeight="500.0" minWidth="700.0" prefHeight="500.0" prefWidth="700.0" stylesheets="@../stylesheets/dark-theme.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controller.AddExpense">
+<HBox fx:id="mainHBox" maxHeight="500.0" maxWidth="700.0" minHeight="500.0" minWidth="700.0" prefHeight="500.0" prefWidth="700.0" stylesheets="@../stylesheets/dark-theme.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controller.Navigation">
    <children>
       <VBox prefWidth="92.0">
          <HBox.margin>
@@ -22,17 +22,17 @@
                         <Image url="@../assets/Logo.png" />
                      </image>
                   </ImageView>
-                  <Button mnemonicParsing="false" onAction="#add_income" prefHeight="26.0" prefWidth="170.0" text="Add Income">
+                  <Button mnemonicParsing="false" onAction="#addIncome" prefHeight="26.0" prefWidth="170.0" text="Add Income">
                      <VBox.margin>
                         <Insets top="10.0" />
                      </VBox.margin>
                   </Button>
-                  <Button mnemonicParsing="false" onAction="#add_expense" prefHeight="26.0" prefWidth="163.0" text="Add Expense" />
-                  <Button mnemonicParsing="false" onAction="#add_expense" prefHeight="26.0" prefWidth="163.0" text="Add Wallet" />
-                  <Button mnemonicParsing="false" onAction="#add_expense" prefHeight="26.0" prefWidth="163.0" text="Add Category" />
-                  <Button mnemonicParsing="false" onAction="#view_expenses" prefHeight="26.0" prefWidth="168.0" text="View Expenses" />
-                  <Button mnemonicParsing="false" onAction="#remaining_money" prefHeight="26.0" prefWidth="196.0" text="Remaining Money" />
-                  <Button mnemonicParsing="false" onAction="#export_csv" prefHeight="26.0" prefWidth="196.0" text="Export CSV" />
+                  <Button mnemonicParsing="false" onAction="#addWxpense" prefHeight="26.0" prefWidth="163.0" text="Add Expense" />
+                  <Button mnemonicParsing="false" onAction="#addWallet" prefHeight="26.0" prefWidth="163.0" text="Add Wallet" />
+                  <Button mnemonicParsing="false" onAction="#addCategory" prefHeight="26.0" prefWidth="163.0" text="Add Category" />
+                  <Button mnemonicParsing="false" onAction="#viewExpenses" prefHeight="26.0" prefWidth="168.0" text="View Expenses" />
+                  <Button mnemonicParsing="false" onAction="#viewRemaining" prefHeight="26.0" prefWidth="196.0" text="Remaining Money" />
+                  <Button mnemonicParsing="false" onAction="#exportCSV" prefHeight="26.0" prefWidth="196.0" text="Export CSV" />
                   <Label alignment="CENTER" prefHeight="30.0" prefWidth="127.0" text="© Team GEN_1" VBox.vgrow="ALWAYS">
                      <VBox.margin>
                         <Insets top="10.0" />

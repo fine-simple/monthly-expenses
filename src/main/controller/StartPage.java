@@ -11,6 +11,11 @@ public class StartPage {
     
     @FXML
     void members() {
-        
+        ScreenController.getInstance().activate("team_members");
+    }
+
+    @FXML
+    void goBack() {
+        ScreenController.getInstance().activate("start_page");
     }
 }

@@ -27,7 +27,7 @@ public class ScreenController {
 
     public void activate(String name){
         try {
-            main.setRoot( (Pane)FXMLLoader.load(getClass().getResource("../../resources/fxml/" + name + ".fxml") ));
+            main.setRoot( (Pane)FXMLLoader.load(getClass().getResource("/resources/fxml/" + name + ".fxml") ));
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -16,11 +16,10 @@ public class ViewRemaining implements Initializable {
     CategoryAxis months;
     @FXML
     NumberAxis money;
-    
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        // Draw Graph at startup    
+        // Draw Graph at startup
     }
-
 
 }

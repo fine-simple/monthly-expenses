@@ -29,3 +29,9 @@ hs_err_pid*
 .idea/**
 .vs/**
 out/**
+
+# NetBeans
+nbproject/**
+build.xml
+manifest.mf
+

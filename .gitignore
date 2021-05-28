@@ -24,20 +24,8 @@ hs_err_pid*
 
 # vscode
 .vscode/*
-.idea/vcs.xml
-.vs/ProjectSettings.json
-.idea/modules.xml
-.idea/misc.xml
-.idea/libraries/lib.xml
-.vs/slnx.sqlite
-monthly-expenses.iml
-out/production/monthly-expenses/resources/assets/Logo.png
-out/production/monthly-expenses/resources/fxml/add_expense.fxml
-out/production/monthly-expenses/resources/fxml/add_income.fxml
-out/production/monthly-expenses/resources/fxml/remaining_money.fxml
-out/production/monthly-expenses/resources/fxml/start_page.fxml
-out/production/monthly-expenses/resources/stylesheets/aqua-air.css
-out/production/monthly-expenses/resources/fxml/view_expenses.fxml
-out/production/monthly-expenses/resources/stylesheets/dark-theme.css
-src/java/Main.java
-src/java/Main.java
+
+# Visual Studio
+.idea/**
+.vs/**
+out/**

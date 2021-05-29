@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
@@ -17,28 +16,60 @@
             <Font name="System Bold" size="27.0" />
          </font>
       </Label>
-      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
          <children>
-            <HBox alignment="CENTER" spacing="5.0">
+            <VBox spacing="5.0">
                <children>
-                  <ComboBox prefWidth="150.0" promptText="Month" />
+                  <Label text="Month">
+                     <VBox.margin>
+                        <Insets left="5.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <ComboBox prefWidth="150.0" promptText="Any" />
                </children>
-            </HBox>
-            <HBox alignment="CENTER" spacing="5.0">
+            </VBox>
+            <VBox spacing="5.0">
                <children>
-                  <ComboBox prefWidth="150.0" promptText="Year" />
+                  <Label text="Category">
+                     <VBox.margin>
+                        <Insets left="5.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <ComboBox prefWidth="150.0" promptText="Any" />
                </children>
-            </HBox>
-            <HBox alignment="CENTER" spacing="5.0">
+            </VBox>
+            <VBox spacing="5.0">
                <children>
-                  <ComboBox prefWidth="150.0" promptText="Category" />
+                  <Label text="Wallet">
+                     <VBox.margin>
+                        <Insets left="5.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <ComboBox prefWidth="150.0" promptText="Any" />
                </children>
-            </HBox>
-            <HBox alignment="CENTER" spacing="5.0">
+            </VBox>
+            <VBox spacing="5.0">
                <children>
-                  <ComboBox prefWidth="150.0" promptText="Wallet" />
+                  <Label text="Year">
+                     <VBox.margin>
+                        <Insets left="5.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <ComboBox prefWidth="150.0" promptText="Any" />
                </children>
-            </HBox>
+            </VBox>
          </children>
       </HBox>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">

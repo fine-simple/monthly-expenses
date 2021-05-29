@@ -1,23 +1,27 @@
 package main.model;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Date;
 
 public class Expenses {
     private String title;
-    private int price;
+    private float price;
     private Date date;
+     public ArrayList<Expenses> exp= new ArrayList<>();
 
-    public Expenses(String title, int price, Date date) {
+    public Expenses(String title, float price, Date date) {
         this.title = title;
         this.price = price;
         this.date = date;
     }
 
+
     public String getTitle() {
         return title;
     }
 
-    public int getPrice() {
+    public float getPrice() {
         return price;
     }
 
@@ -29,7 +33,7 @@ public class Expenses {
         this.title = title;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(float price) {
         this.price = price;
     }
 

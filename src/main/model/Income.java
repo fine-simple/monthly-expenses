@@ -1,26 +1,27 @@
 package main.model;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class Income {
     private float value;
-    private Date date;
-    public static int totalBalance=0;
+    private LocalDate date;
+    private static int totalBalance=0;
 
-    public Income(float value, Date date) {
+    public Income(float value, LocalDate date) {
         this.value = value;
         this.date = date;
+        totalBalance += value;
     }
 
     public float getValue() {
         return value;
     }
 
-    public void setValue(int value) {
-        this.value = value;
+    public LocalDate getDate() {
+        return date;
     }
 
-    public Date getDate() {
-        return date;
+    public static int getTotalBalance() {
+        return totalBalance;
     }
 }

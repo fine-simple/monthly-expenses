@@ -1,6 +1,5 @@
 package main.controller;
 
-import java.util.HashMap;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;

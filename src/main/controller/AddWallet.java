@@ -3,7 +3,7 @@ package main.controller;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
-import main.model.Wallet;
+import main.model.dao.WalletDao;
 
 public class AddWallet {
     @FXML
@@ -11,19 +11,14 @@ public class AddWallet {
 
     @FXML
     void addWallet() {
-        
-       String wallname= wallet.getText();
-       
-       
-       if(!(Wallet.Wall.containsKey(wallname))) {
-           Wallet currWall = new Wallet(wallname);
-            Wallet.Wall.put(wallname,currWall);
-    }
-       else{
+        String wallname = wallet.getText().trim();
+        wallet.setText("");
+        if (WalletDao.getInstance().wallets.containsKey(wallname)) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setContentText("This wallet already exists");
-            alert.show();          
+            alert.show();
+            return;
         }
-       wallet.setText(" ");
+        WalletDao.getInstance().add(wallname);
     }
 }

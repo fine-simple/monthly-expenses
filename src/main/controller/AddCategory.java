@@ -1,11 +1,9 @@
 package main.controller;
 
-import java.util.ArrayList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
-import main.model.Expense;
-import main.model.Wallet;
+import main.model.dao.ExpenseDao;
 
 public class AddCategory {
     @FXML
@@ -14,20 +12,13 @@ public class AddCategory {
     @FXML
     void addCategory() {
         String name = category.getText();
-        
-        if(Wallet.Wall.isEmpty()) {
+        if (ExpenseDao.getInstance().hasCategory(name)) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setContentText("You need to add a Wallet First");
+            alert.setContentText("Category Already Exists");
             alert.show();
-        }
-        else{
-            for(String walletName: Wallet.Wall.keySet()) {
-            Wallet temp = Wallet.Wall.get(walletName);
-            ArrayList<Expense> exp= new ArrayList<>();
-            temp.categories.put(name, exp);
-            Wallet.Wall.replace(walletName, temp);
-        }
-        }
-        category.setText(" ");
+            return;
+        } 
+        ExpenseDao.getInstance().addCategory(name);
+        category.setText("");
     }
 }

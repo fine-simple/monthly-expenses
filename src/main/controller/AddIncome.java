@@ -15,7 +15,8 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import main.model.Income;
-import main.model.Wallet;
+import main.model.dao.IncomeDao;
+import main.model.dao.WalletDao;
 
 public class AddIncome implements Initializable {
 
@@ -51,10 +52,7 @@ public class AddIncome implements Initializable {
             return;
         }
 
-        Wallet wallet;
-        try {
-            wallet = Wallet.Wall.get(walletCombo.getValue());
-        } catch (Exception e) {
+        if(! WalletDao.getInstance().wallets.containsKey(walletCombo.getValue())) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setContentText("Please Choose Wallet");
             alert.show();
@@ -62,14 +60,17 @@ public class AddIncome implements Initializable {
             return;
         }
 
-        Income income = new Income(value, localdate, wallet);
+        Income income = new Income(value, localdate);
+        IncomeDao.getInstance().add(income);
+        WalletDao.getInstance().wallets.get(walletCombo.getValue()).total += value;
 
+        amountText.setText("");
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         List<String> list = new ArrayList<String>();
-        for (String s : Wallet.Wall.keySet()) {
+        for (String s : WalletDao.getInstance().wallets.keySet()) {
             list.add(s);
         }
         ObservableList<String> List2 = FXCollections.observableArrayList(list);

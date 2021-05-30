@@ -3,9 +3,8 @@ package main.model.dao;
 import java.util.HashMap;
 
 import main.model.Wallet;
-
 public class WalletDao {
-    public HashMap<String, Wallet> wallets = new HashMap<>();
+    public HashMap<String, Wallet> wallets;
 
     private static WalletDao instance;
 
@@ -16,18 +15,18 @@ public class WalletDao {
     }
 
     private WalletDao() {
-        
+        wallets = new HashMap<>();
     }
 
-    Wallet get(String name) {
+    public Wallet get(String name) {
         return wallets.get("name");
     }
 
-    HashMap<String, Wallet> getAll() {
+    public HashMap<String, Wallet> getAll() {
         return wallets;
     }
 
-    void add(Wallet wallet) {
-        wallets.put(wallet.getName(), wallet);
+    public void add(String name) {
+        wallets.put(name, new Wallet());
     }
 }

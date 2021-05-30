@@ -33,7 +33,7 @@ public class ViewExpenses implements Initializable {
 
 	@FXML
 	void filter() {
-		System.out.println("Works?");
+		
 	}
 	
 	@Override

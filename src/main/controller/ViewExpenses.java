@@ -7,16 +7,16 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.ResourceBundle;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import main.model.Expense;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.ListView;
 import main.model.Wallet;
 
 public class ViewExpenses implements Initializable {
@@ -33,23 +33,23 @@ public class ViewExpenses implements Initializable {
 	ComboBox<String> wallet;
 
 	@FXML
-	String chooseMonth() {
-		return wallet.getValue();
+	void chooseMonth() {
+		
 	}
 
 	@FXML
-	String chooseYear() {
-		return category.getValue();
+	void chooseYear() {
+		
 	}
 
 	@FXML
-	String chooseCategory() {
-		return category.getValue();
+	void chooseCategory() {
+		
 	}
 
 	@FXML
-	String chooseWallet() {
-		return wallet.getValue();
+	void chooseWallet() {
+		
 	}
 
 	@FXML
@@ -114,7 +114,6 @@ public class ViewExpenses implements Initializable {
 	}
 
     ObservableList<Expense> getExpenses() {
-        //TODO: add real data
 
         ObservableList<Expense> list = FXCollections.observableArrayList();
         LocalDate ld = LocalDate.now();

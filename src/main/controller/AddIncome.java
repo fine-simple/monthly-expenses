@@ -62,9 +62,7 @@ public class AddIncome implements Initializable {
             return;
         }
 
-        Income income = new Income(value, localdate);
-        wallet.incomes.add(income);
-        wallet.setTotal(wallet.getTotal() + value);
+        Income income = new Income(value, localdate, wallet);
 
     }
 

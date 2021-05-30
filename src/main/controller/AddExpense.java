@@ -15,7 +15,6 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import main.model.Expense;
-import main.model.Wallet;
 import main.model.dao.ExpenseDao;
 import main.model.dao.WalletDao;
 
@@ -67,17 +66,17 @@ public class AddExpense implements Initializable {
 
         String wallname = walletCombo.getValue();
         String catname = categoryCombo.getValue();
-        Wallet wallet = WalletDao.getInstance().wallets.get(wallname);
+        Float wallet = WalletDao.getInstance().wallets.get(wallname);
 
-        if (value > wallet.total) {
+        if (value > wallet) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setContentText("Expenses Value is more that Wallet Value");
             alert.show();
             return;
         } 
 
-        wallet.total -= value;
-        Expense e = new Expense(tit, value, localdate, wallet);
+        WalletDao.getInstance().wallets.put(wallname, wallet - value);
+        Expense e = new Expense(tit, value, localdate, wallname);
         ExpenseDao.getInstance().add(e, catname);
 
         amount.setText("");

@@ -6,19 +6,19 @@ public class Expense {
     private String title;
     private float price;
     private LocalDate date;
-    private Wallet wallet;
+    private String wallet;
 
-    public Expense(String title, float price, LocalDate date, Wallet wallet) {
+    public Expense(String title, float price, LocalDate date, String wallet) {
         this.title = title;
         this.price = price;
         this.date = date;
         this.wallet = wallet;
     }
 
-    public Wallet getWallet() {
+    public String getWallet() {
         return wallet;
     }
-    
+
     public String getTitle() {
         return title;
     }

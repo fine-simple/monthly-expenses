@@ -15,7 +15,6 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import main.model.Income;
-import main.model.Wallet;
 import main.model.dao.IncomeDao;
 import main.model.dao.WalletDao;
 
@@ -52,9 +51,8 @@ public class AddIncome implements Initializable {
             incomeDate.setValue(LocalDate.now());
             return;
         }
-
-        Wallet wallet = WalletDao.getInstance().wallets.get(walletCombo.getValue());
-        if(wallet == null) {
+        
+        if(! WalletDao.getInstance().wallets.containsKey(walletCombo.getValue())) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setContentText("Please Choose Wallet");
             alert.show();
@@ -62,10 +60,9 @@ public class AddIncome implements Initializable {
             return;
         }
         
-        Income income = new Income(value, localdate, wallet);
+        Income income = new Income(value, localdate, walletCombo.getValue());
         IncomeDao.getInstance().add(income);
-        wallet.total += value;
-        
+        WalletDao.getInstance().wallets.put(walletCombo.getValue(), WalletDao.getInstance().get(walletCombo.getValue()) + value);
         amountText.setText("");
     }
 

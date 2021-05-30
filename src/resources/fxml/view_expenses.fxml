@@ -3,7 +3,6 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.HBox?>
@@ -29,7 +28,7 @@
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <ComboBox fx:id="month" onAction="#chooseMonth" prefWidth="150.0" promptText="Any" />
+                  <ComboBox fx:id="month" onAction="#filter" prefWidth="150.0" promptText="Any" />
                </children>
             </VBox>
             <VBox spacing="5.0">
@@ -42,7 +41,7 @@
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <ComboBox fx:id="year" onAction="#chooseYear" prefWidth="150.0" promptText="Any" />
+                  <ComboBox fx:id="year" onAction="#filter" prefWidth="150.0" promptText="Any" />
                </children>
             </VBox>
             <VBox spacing="5.0">
@@ -55,7 +54,7 @@
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <ComboBox fx:id="category" onAction="#chooseCategory" prefWidth="150.0" promptText="Any" />
+                  <ComboBox fx:id="category" onAction="#filter" prefWidth="150.0" promptText="Any" />
                </children>
             </VBox>
             <VBox spacing="5.0">
@@ -68,7 +67,7 @@
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <ComboBox fx:id="wallet" onAction="#chooseWallet" prefWidth="150.0" promptText="Any" />
+                  <ComboBox fx:id="wallet" onAction="#filter" prefWidth="150.0" promptText="Any" />
                </children>
             </VBox>
          </children>
@@ -81,13 +80,13 @@
                </font>
             </Label>
             <HBox alignment="CENTER" spacing="5.0" />
-            <TextField fx:id="moneyFrom" promptText="From" />
+            <TextField fx:id="moneyFrom" onKeyTyped="#filter" promptText="From" />
             <Label text=":">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <TextField fx:id="moneyTo" promptText="To" />
+            <TextField fx:id="moneyTo" onKeyTyped="#filter" promptText="To" />
          </children>
       </HBox>
       <TableView fx:id="list" prefHeight="414.0" prefWidth="588.0">

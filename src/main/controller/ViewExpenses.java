@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import main.model.Expense;
 import main.model.dao.ExpenseDao;
 import main.model.dao.IncomeDao;
@@ -24,31 +25,20 @@ public class ViewExpenses implements Initializable {
 	ComboBox<String> category;
 	@FXML
 	ComboBox<String> wallet;
+	@FXML
+	TextField moneyTo;
+	@FXML 
+	TextField moneyFrom;
 
 	@FXML
-	void chooseMonth() {
-
-	}
-
-	@FXML
-	void chooseYear() {
-
-	}
-
-	@FXML
-	void chooseCategory() {
-
-	}
-
-	@FXML
-	void chooseWallet() {
-
+	void filter() {
+		System.out.println("Works?");
 	}
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// Load All Date in the table
-		
+
 		printAllDate();
 	}
 
@@ -58,20 +48,20 @@ public class ViewExpenses implements Initializable {
 		System.out.flush();
 		System.out.println("Wallets:");
 		for (var entry : WalletDao.getInstance().wallets.entrySet()) {
-			System.out.println(entry.getKey() + " - " + entry.getValue().total);
+			System.out.println(entry.getKey() + " - " + entry.getValue());
 		}
 
 		System.out.println("\n");
 		System.out.println("Income:");
 		for (var entry : IncomeDao.getInstance().getAll()) {
-			System.out.println(entry.getDate() + " - " + entry.getValue() + " - " + entry.getWallet().getName());
+			System.out.println(entry.getDate() + " - " + entry.getValue() + " - " + entry.getWallet());
 		}
 
 		System.out.println("\n");
 		System.out.println("Expenses:");
 		for (var entry : ExpenseDao.getInstance().categories.entrySet()) {
 			for (var expense : entry.getValue()) {
-				System.out.println(expense.getTitle() + " - " + expense.getDate() + " - " + expense.getPrice() + " - " + entry.getKey() + " - " + expense.getWallet().getName());
+				System.out.println(expense.getTitle() + " - " + expense.getDate() + " - " + expense.getPrice() + " - " + entry.getKey() + " - " + expense.getWallet());
 			}
 		}
 

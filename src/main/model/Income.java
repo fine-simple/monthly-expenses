@@ -5,8 +5,8 @@ import java.time.LocalDate;
 public class Income {
     private float value;
     private LocalDate date;
-    private Wallet wallet;
-    public Income(float value, LocalDate date, Wallet wallet) {
+    private String wallet;
+    public Income(float value, LocalDate date, String wallet) {
         this.value = value;
         this.date = date;
         this.wallet = wallet;
@@ -20,7 +20,7 @@ public class Income {
         return date;
     }
 
-    public Wallet getWallet() {
+    public String getWallet() {
         return wallet;
     }
 }

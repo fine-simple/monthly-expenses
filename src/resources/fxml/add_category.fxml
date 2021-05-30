@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" maxHeight="563.0" maxWidth="700.0" minHeight="427.0" minWidth="530.0" prefHeight="563.0" prefWidth="658.0" spacing="20.0" stylesheets="@../stylesheets/dark-theme.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controller.AddCategory">
+<VBox alignment="CENTER" maxHeight="563.0" maxWidth="700.0" minHeight="427.0" minWidth="530.0" prefHeight="563.0" prefWidth="658.0" spacing="20.0" stylesheets="@../stylesheets/dark-theme.css" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controller.AddCategory">
    <children>
       <Label alignment="CENTER" minWidth="386.0" prefHeight="39.0" prefWidth="386.0" text="Add new category" VBox.vgrow="ALWAYS">
          <font>

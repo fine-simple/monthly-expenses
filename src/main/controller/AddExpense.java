@@ -14,6 +14,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
+import main.debugging.debugging;
 import main.model.Expense;
 import main.model.dao.ExpenseDao;
 import main.model.dao.WalletDao;
@@ -80,6 +81,7 @@ public class AddExpense implements Initializable {
         ExpenseDao.getInstance().add(e, catname);
 
         amount.setText("");
+        debugging.printAllExpenses();
     }
 
     @Override

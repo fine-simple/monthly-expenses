@@ -9,6 +9,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import main.model.Expense;
+import main.model.dao.CategoryDao;
 import main.model.dao.ExpenseDao;
 import main.model.dao.IncomeDao;
 import main.model.dao.WalletDao;
@@ -53,21 +54,19 @@ public class ViewExpenses implements Initializable {
 
 		System.out.println("\n");
 		System.out.println("Income:");
-		for (var entry : IncomeDao.getInstance().getAll()) {
+		for (var entry : IncomeDao.getInstance().incomes) {
 			System.out.println(entry.getDate() + " - " + entry.getValue() + " - " + entry.getWallet());
 		}
 
 		System.out.println("\n");
 		System.out.println("Expenses:");
-		for (var entry : ExpenseDao.getInstance().categories.entrySet()) {
-			for (var expense : entry.getValue()) {
-				System.out.println(expense.getTitle() + " - " + expense.getDate() + " - " + expense.getPrice() + " - " + entry.getKey() + " - " + expense.getWallet());
-			}
+		for (var expense : ExpenseDao.getInstance().expenses) {
+				System.out.println(expense.getTitle() + " - " + expense.getDate() + " - " + expense.getPrice() + " - " + expense.getCategory() + " - " + expense.getWallet());
 		}
 
 		System.out.println("\n");
 		System.out.println("Categories:");
-		for (var entry : ExpenseDao.getInstance().categories.keySet()) {
+		for (var entry : CategoryDao.getInstance().categories) {
 			System.out.println(entry);
 		}
 	}

@@ -56,13 +56,12 @@ public class AddIncome implements Initializable {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setContentText("Please Choose Wallet");
             alert.show();
-            amountText.setText("");
             return;
         }
         
         Income income = new Income(value, localdate, walletCombo.getValue());
-        IncomeDao.getInstance().add(income);
-        WalletDao.getInstance().wallets.put(walletCombo.getValue(), WalletDao.getInstance().get(walletCombo.getValue()) + value);
+        IncomeDao.getInstance().incomes.add(income);
+        WalletDao.getInstance().wallets.put(walletCombo.getValue(), WalletDao.getInstance().wallets.get(walletCombo.getValue()) + value);
         amountText.setText("");
     }
 

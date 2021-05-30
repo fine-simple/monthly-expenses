@@ -3,7 +3,7 @@ package main.controller;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
-import main.model.dao.ExpenseDao;
+import main.model.dao.CategoryDao;
 
 public class AddCategory {
     @FXML
@@ -20,13 +20,15 @@ public class AddCategory {
             return;
         }
 
-        if (ExpenseDao.getInstance().hasCategory(name)) {
+        if (CategoryDao.getInstance().categories.contains(name)) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setContentText("Category Already Exists");
             alert.show();
             return;
         } 
-        ExpenseDao.getInstance().addCategory(name);
+
+        CategoryDao.getInstance().categories.add(name);
+        
         category.setText("");
     }
 }

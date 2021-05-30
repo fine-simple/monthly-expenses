@@ -14,8 +14,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
-import main.debugging.debugging;
 import main.model.Expense;
+import main.model.dao.CategoryDao;
 import main.model.dao.ExpenseDao;
 import main.model.dao.WalletDao;
 
@@ -33,9 +33,8 @@ public class AddExpense implements Initializable {
 
     @FXML
     void addExpense() {
+
         float value;
-        String tit;
-        LocalDate localdate;
         try {
             value = Float.parseFloat(amount.getText());
         } catch (NumberFormatException e) {
@@ -45,7 +44,8 @@ public class AddExpense implements Initializable {
             amount.setText("");
             return;
         }
-
+        
+        String tit;
         try {
             tit = title.getText();
         } catch (Exception e) {
@@ -55,6 +55,8 @@ public class AddExpense implements Initializable {
             title.setText(" ");
             return;
         }
+        
+        LocalDate localdate;
         try {
             localdate = date.getValue();
         } catch (Exception e) {
@@ -66,22 +68,35 @@ public class AddExpense implements Initializable {
         }
 
         String wallname = walletCombo.getValue();
+        if(!WalletDao.getInstance().wallets.containsKey(wallname)) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("Please Choose Wallet");
+            alert.show();
+            return;
+        }
+        
         String catname = categoryCombo.getValue();
-        Float wallet = WalletDao.getInstance().wallets.get(wallname);
+        if(!CategoryDao.getInstance().categories.contains(catname)) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("Please Choose Category");
+            alert.show();
+            return;
+        }
 
+        Float wallet = WalletDao.getInstance().wallets.get(wallname);
         if (value > wallet) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setContentText("Expenses Value is more that Wallet Value");
             alert.show();
             return;
-        } 
+        }
 
         WalletDao.getInstance().wallets.put(wallname, wallet - value);
-        Expense e = new Expense(tit, value, localdate, wallname);
-        ExpenseDao.getInstance().add(e, catname);
+        Expense e = new Expense(tit, value, localdate, wallname, catname);
+        ExpenseDao.getInstance().expenses.add(e);
 
         amount.setText("");
-        debugging.printAllExpenses();
+        title.setText("");
     }
 
     @Override
@@ -91,13 +106,7 @@ public class AddExpense implements Initializable {
             allWallets.add(s);
         }
 
-        List<String> allCategories = new ArrayList<String>();
-        
-        for (String string : ExpenseDao.getInstance().categories.keySet()) {
-            allCategories.add(string);
-        }
-
-        ObservableList<String> List2 = FXCollections.observableArrayList(allCategories);
+        ObservableList<String> List2 = FXCollections.observableArrayList(CategoryDao.getInstance().categories);
         categoryCombo.setItems(List2);
 
         ObservableList<String> List = FXCollections.observableArrayList(allWallets);

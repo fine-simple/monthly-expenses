@@ -7,12 +7,14 @@ public class Expense {
     private float price;
     private LocalDate date;
     private String wallet;
+    private String category;
 
-    public Expense(String title, float price, LocalDate date, String wallet) {
+    public Expense(String title, float price, LocalDate date, String wallet, String category) {
         this.title = title;
         this.price = price;
         this.date = date;
         this.wallet = wallet;
+        this.category = category;
     }
 
     public String getWallet() {
@@ -29,5 +31,9 @@ public class Expense {
 
     public LocalDate getDate() {
         return date;
+    }
+
+    public String getCategory() {
+        return category;
     }
 }

@@ -26,6 +26,6 @@ public class AddWallet {
             alert.show();
             return;
         }
-        WalletDao.getInstance().add(wallname);
+        WalletDao.getInstance().wallets.put(wallname, 0f);
     }
 }

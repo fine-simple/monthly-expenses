@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import main.model.Income;
 
 public class IncomeDao {
-    ArrayList<Income> incomes;
+    public final ArrayList<Income> incomes;
 
     private static IncomeDao instance;
 
@@ -17,13 +17,5 @@ public class IncomeDao {
         if(instance == null)
             instance = new IncomeDao();
         return instance;
-    }
-
-    public ArrayList<Income> getAll() {
-        return incomes;
-    }
-
-    public void add(Income income) {
-        incomes.add(income);
     }
 }

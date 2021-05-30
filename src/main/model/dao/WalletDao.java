@@ -3,7 +3,7 @@ package main.model.dao;
 import java.util.HashMap;
 
 public class WalletDao {
-    public HashMap<String, Float> wallets;
+    public final HashMap<String, Float> wallets;
 
     private static WalletDao instance;
 
@@ -15,20 +15,8 @@ public class WalletDao {
 
     private WalletDao() {
         wallets = new HashMap<>();
-        add("Cash");
-        add("Credit");
-        add("Debit");
-    }
-
-    public Float get(String name) {
-        return wallets.get(name);
-    }
-
-    public HashMap<String, Float> getAll() {
-        return wallets;
-    }
-
-    public void add(String name) {
-        wallets.put(name, Float.valueOf(0));
+        wallets.put("Cash", 0f);
+        wallets.put("Credit", 0f);
+        wallets.put("Debit", 0f);
     }
 }

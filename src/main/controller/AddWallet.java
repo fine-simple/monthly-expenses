@@ -13,6 +13,13 @@ public class AddWallet {
     void addWallet() {
         String wallname = wallet.getText().trim();
         wallet.setText("");
+        if (wallname.length() < 1) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("Wallet Can't Be Empty");
+            alert.show();
+            return;
+        }
+
         if (WalletDao.getInstance().wallets.containsKey(wallname)) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setContentText("This wallet already exists");

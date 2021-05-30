@@ -73,12 +73,13 @@ public class AddExpense implements Initializable {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setContentText("Expenses Value is more that Wallet Value");
             alert.show();
-        } else {
-            wallet.total -= value;
-            Expense e = new Expense(tit, value, localdate);
+            return;
+        } 
 
-            ExpenseDao.getInstance().add(e, catname);
-        }
+        wallet.total -= value;
+        Expense e = new Expense(tit, value, localdate, wallet);
+        ExpenseDao.getInstance().add(e, catname);
+
         amount.setText("");
     }
 

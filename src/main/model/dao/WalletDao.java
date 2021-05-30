@@ -27,6 +27,6 @@ public class WalletDao {
     }
 
     public void add(String name) {
-        wallets.put(name, new Wallet());
+        wallets.put(name, new Wallet(name));
     }
 }

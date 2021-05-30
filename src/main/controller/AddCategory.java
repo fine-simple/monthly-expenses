@@ -11,7 +11,15 @@ public class AddCategory {
 
     @FXML
     void addCategory() {
-        String name = category.getText();
+        String name = category.getText().trim();
+        
+        if(name.length() < 1) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("Category Can't Be Empty");
+            alert.show();
+            return;
+        }
+
         if (ExpenseDao.getInstance().hasCategory(name)) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setContentText("Category Already Exists");

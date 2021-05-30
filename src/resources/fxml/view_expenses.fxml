@@ -89,7 +89,7 @@
             <TextField fx:id="moneyTo" onKeyTyped="#filter" promptText="To" />
          </children>
       </HBox>
-      <TableView fx:id="list" prefHeight="414.0" prefWidth="588.0">
+      <TableView fx:id="table" prefHeight="414.0" prefWidth="588.0">
         <columns>
         </columns>
       </TableView>

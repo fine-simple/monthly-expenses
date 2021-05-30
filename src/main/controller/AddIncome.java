@@ -20,59 +20,65 @@ import main.model.dao.WalletDao;
 
 public class AddIncome implements Initializable {
 
-    @FXML
-    TextField amountText;
-    @FXML
-    ComboBox<String> walletCombo;
-    @FXML
-    DatePicker incomeDate;
+	@FXML
+	TextField amountText;
+	@FXML
+	ComboBox<String> walletCombo;
+	@FXML
+	DatePicker incomeDate;
 
-    @FXML
-    void addIncome() {
+	@FXML
+	void addIncome() {
 
-        float value;
-        try {
-            value = Float.parseFloat(amountText.getText());
-        } catch (NumberFormatException e) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setContentText("Wrong Number Format");
-            alert.show();
-            amountText.setText("");
-            return;
-        }
+		float value;
+		try {
+			value = Float.parseFloat(amountText.getText());
+		} catch (NumberFormatException e) {
+			Alert alert = new Alert(Alert.AlertType.ERROR);
+			alert.setContentText("Wrong Number Format");
+			alert.show();
+			amountText.setText("");
+			return;
+		}
 
-        LocalDate localdate;
-        try {
-            localdate = incomeDate.getValue();
-        } catch (Exception e) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setContentText("Wrong Date Format");
-            alert.show();
-            incomeDate.setValue(LocalDate.now());
-            return;
-        }
-        
-        if(! WalletDao.getInstance().wallets.containsKey(walletCombo.getValue())) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setContentText("Please Choose Wallet");
-            alert.show();
-            return;
-        }
-        
-        Income income = new Income(value, localdate, walletCombo.getValue());
-        IncomeDao.getInstance().incomes.add(income);
-        WalletDao.getInstance().wallets.put(walletCombo.getValue(), WalletDao.getInstance().wallets.get(walletCombo.getValue()) + value);
-        amountText.setText("");
-    }
+		LocalDate localdate;
+		try {
+			localdate = incomeDate.getValue();
+		} catch (Exception e) {
+			Alert alert = new Alert(Alert.AlertType.ERROR);
+			alert.setContentText("Wrong Date Format");
+			alert.show();
+			incomeDate.setValue(LocalDate.now());
+			return;
+		}
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        List<String> list = new ArrayList<String>();
-        for (String s : WalletDao.getInstance().wallets.keySet()) {
-            list.add(s);
-        }
-        ObservableList<String> List2 = FXCollections.observableArrayList(list);
-        walletCombo.setItems(List2);
-        incomeDate.setValue(LocalDate.now());
-    }
+		if (!WalletDao.getInstance().wallets.containsKey(walletCombo.getValue())) {
+			Alert alert = new Alert(Alert.AlertType.ERROR);
+			alert.setContentText("Please Choose Wallet");
+			alert.show();
+			return;
+		}
+
+		Income income = new Income(value, localdate, walletCombo.getValue());
+		IncomeDao.getInstance().incomes.add(income);
+		WalletDao.getInstance().wallets.put(walletCombo.getValue(),
+				WalletDao.getInstance().wallets.get(walletCombo.getValue()) + value);
+		amountText.setText("");
+		Alert alert = new Alert(Alert.AlertType.INFORMATION);
+		alert.setHeaderText("Income recorded");
+		alert.setTitle("Success!");
+		alert.setContentText("You added " + value + "$ to the wallet: " + walletCombo.getValue());
+		alert.show();
+	}
+
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+		List<String> list = new ArrayList<String>();
+		for (String s : WalletDao.getInstance().wallets.keySet()) {
+			list.add(s);
+		}
+		ObservableList<String> List2 = FXCollections.observableArrayList(list);
+		walletCombo.setItems(List2);
+		incomeDate.setValue(LocalDate.now());
+	}
 }

@@ -20,98 +20,103 @@ import main.model.dao.ExpenseDao;
 import main.model.dao.WalletDao;
 
 public class AddExpense implements Initializable {
-    @FXML
-    TextField title;
-    @FXML
-    TextField amount;
-    @FXML
-    DatePicker date;
-    @FXML
-    ComboBox<String> categoryCombo;
-    @FXML
-    ComboBox<String> walletCombo;
+	@FXML
+	TextField title;
+	@FXML
+	TextField amount;
+	@FXML
+	DatePicker date;
+	@FXML
+	ComboBox<String> categoryCombo;
+	@FXML
+	ComboBox<String> walletCombo;
 
-    @FXML
-    void addExpense() {
+	@FXML
+	void addExpense() {
 
-        float value;
-        try {
-            value = Float.parseFloat(amount.getText());
-        } catch (NumberFormatException e) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setContentText("NumberFormatException " + e.getMessage());
-            alert.show();
-            amount.setText("");
-            return;
-        }
-        
-        String tit;
-        try {
-            tit = title.getText();
-        } catch (Exception e) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setContentText("Wrong Date Format");
-            alert.show();
-            title.setText(" ");
-            return;
-        }
-        
-        LocalDate localdate;
-        try {
-            localdate = date.getValue();
-        } catch (Exception e) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setContentText("Wrong Date Format");
-            alert.show();
-            date.setValue(LocalDate.now());
-            return;
-        }
+		float value;
+		try {
+			value = Float.parseFloat(amount.getText());
+		} catch (NumberFormatException e) {
+			Alert alert = new Alert(Alert.AlertType.ERROR);
+			alert.setContentText("NumberFormatException " + e.getMessage());
+			alert.show();
+			amount.setText("");
+			return;
+		}
 
-        String wallname = walletCombo.getValue();
-        if(!WalletDao.getInstance().wallets.containsKey(wallname)) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setContentText("Please Choose Wallet");
-            alert.show();
-            return;
-        }
-        
-        String catname = categoryCombo.getValue();
-        if(!CategoryDao.getInstance().categories.contains(catname)) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setContentText("Please Choose Category");
-            alert.show();
-            return;
-        }
+		String tit;
+		try {
+			tit = title.getText();
+		} catch (Exception e) {
+			Alert alert = new Alert(Alert.AlertType.ERROR);
+			alert.setContentText("Wrong Date Format");
+			alert.show();
+			title.setText(" ");
+			return;
+		}
 
-        Float wallet = WalletDao.getInstance().wallets.get(wallname);
-        if (value > wallet) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setContentText("Expenses Value is more that Wallet Value");
-            alert.show();
-            return;
-        }
+		LocalDate localdate;
+		try {
+			localdate = date.getValue();
+		} catch (Exception e) {
+			Alert alert = new Alert(Alert.AlertType.ERROR);
+			alert.setContentText("Wrong Date Format");
+			alert.show();
+			date.setValue(LocalDate.now());
+			return;
+		}
 
-        WalletDao.getInstance().wallets.put(wallname, wallet - value);
-        Expense e = new Expense(tit, value, localdate, wallname, catname);
-        ExpenseDao.getInstance().expenses.add(e);
+		String wallname = walletCombo.getValue();
+		if (!WalletDao.getInstance().wallets.containsKey(wallname)) {
+			Alert alert = new Alert(Alert.AlertType.ERROR);
+			alert.setContentText("Please Choose Wallet");
+			alert.show();
+			return;
+		}
 
-        amount.setText("");
-        title.setText("");
-    }
+		String catname = categoryCombo.getValue();
+		if (!CategoryDao.getInstance().categories.contains(catname)) {
+			Alert alert = new Alert(Alert.AlertType.ERROR);
+			alert.setContentText("Please Choose Category");
+			alert.show();
+			return;
+		}
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        List<String> allWallets = new ArrayList<String>();
-        for (String s : WalletDao.getInstance().wallets.keySet()) {
-            allWallets.add(s);
-        }
+		Float wallet = WalletDao.getInstance().wallets.get(wallname);
+		if (value > wallet) {
+			Alert alert = new Alert(Alert.AlertType.ERROR);
+			alert.setContentText("Expenses Value is more that Wallet Value");
+			alert.show();
+			return;
+		}
 
-        ObservableList<String> List2 = FXCollections.observableArrayList(CategoryDao.getInstance().categories);
-        categoryCombo.setItems(List2);
+		WalletDao.getInstance().wallets.put(wallname, wallet - value);
+		Expense e = new Expense(tit, value, localdate, wallname, catname);
+		ExpenseDao.getInstance().expenses.add(e);
 
-        ObservableList<String> List = FXCollections.observableArrayList(allWallets);
-        walletCombo.setItems(List);
-        date.setValue(LocalDate.now());
-    }
+		amount.setText("");
+		title.setText("");
+		Alert alert = new Alert(Alert.AlertType.INFORMATION);
+		alert.setHeaderText("Expense recorded");
+		alert.setTitle("Success!");
+		alert.setContentText("You paid " + value + "$ from " + wallname + " for " + tit);
+		alert.show();
+	}
+
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+		List<String> allWallets = new ArrayList<String>();
+		for (String s : WalletDao.getInstance().wallets.keySet()) {
+			allWallets.add(s);
+		}
+
+		ObservableList<String> List2 = FXCollections.observableArrayList(CategoryDao.getInstance().categories);
+		categoryCombo.setItems(List2);
+
+		ObservableList<String> List = FXCollections.observableArrayList(allWallets);
+		walletCombo.setItems(List);
+		date.setValue(LocalDate.now());
+	}
 
 }

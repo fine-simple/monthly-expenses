@@ -43,13 +43,43 @@ public class AddExpense implements Initializable {
     @FXML
 
     void addExpense() {
+        float value;
+        String tit;
+        LocalDate localdate;
         try {
-            float value = Float.parseFloat(amount.getText());
-            String tit = title.getText();
-            LocalDate localdate = date.getValue();
+            value = Float.parseFloat(amount.getText());
+             } catch (NumberFormatException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("NumberFormatException " + e.getMessage());
+            alert.show();
+             amount.setText(" ");
+            return;
+        }
+            
+             try{
+                 tit= title.getText();
+             }
+           catch(Exception e){
+             Alert alert = new Alert(Alert.AlertType.ERROR);
+             alert.setContentText("Wrong Date Format");
+             alert.show();
+             title.setText(" ");
+               return;   
+     }             
+             try {
+                 localdate = date.getValue();
+        } catch (Exception e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("Wrong Date Format");
+            alert.show();
+           date.setValue(LocalDate.now());
+            return;
+        }
+            
             String wallname = chooseWallet();
             String catname = chooseCategory();
             Wallet w = Wallet.Wall.get(wallname);
+            
             if (value > w.getTotal()) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setContentText("Expenses Value is more that Wallet Value");
@@ -66,14 +96,11 @@ public class AddExpense implements Initializable {
                 f.printData(f);
 
             }
-        } catch (NumberFormatException e) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setContentText("NumberFormatException " + e.getMessage());
-            alert.show();
+            amount.setText(" ");
         }
 
-        amount.setText(" ");
-    }
+        
+    
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -98,6 +125,7 @@ public class AddExpense implements Initializable {
 
         ObservableList<String> List = FXCollections.observableArrayList(list);
         wallet.setItems(List);
+        date.setValue(LocalDate.now());
 
     }
 

@@ -5,12 +5,11 @@ import java.time.LocalDate;
 public class Income {
     private float value;
     private LocalDate date;
-    private static int totalBalance=0;
-
-    public Income(float value, LocalDate date) {
+    private String wallet;
+    public Income(float value, LocalDate date, String wallet) {
         this.value = value;
         this.date = date;
-        totalBalance += value;
+        this.wallet = wallet;
     }
 
     public float getValue() {
@@ -21,7 +20,7 @@ public class Income {
         return date;
     }
 
-    public static int getTotalBalance() {
-        return totalBalance;
+    public String getWallet() {
+        return wallet;
     }
 }

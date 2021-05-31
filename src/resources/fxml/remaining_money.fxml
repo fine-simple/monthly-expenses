@@ -17,10 +17,10 @@
       </Label>
       <BarChart fx:id="chart" horizontalZeroLineVisible="false" legendSide="LEFT" VBox.vgrow="ALWAYS">
          <xAxis>
-            <CategoryAxis fx:id="months" label="Months" />
+            <CategoryAxis fx:id="months" label="Wallets" />
          </xAxis>
          <yAxis>
-            <NumberAxis fx:id="money" label="Remaining Money" side="LEFT" />
+            <NumberAxis fx:id="money" label="Remaining Money $" side="LEFT" />
          </yAxis>
       </BarChart>
    </children>

@@ -23,8 +23,8 @@
       </TextField>
       <TextField fx:id="amount" prefHeight="40.0" promptText="Amount" />
       <DatePicker fx:id="date" prefHeight="40.0" prefWidth="500.0" promptText="Date" VBox.vgrow="ALWAYS" />
-      <ComboBox fx:id="category" onAction="#chooseCategory" prefHeight="40.0" prefWidth="500.0" promptText="Category" />
-      <ComboBox fx:id="wallet" onAction="#chooseWallet" prefHeight="40.0" prefWidth="500.0" promptText="Wallet" />
+      <ComboBox fx:id="categoryCombo" prefHeight="40.0" prefWidth="500.0" promptText="Category" />
+      <ComboBox fx:id="walletCombo" prefHeight="40.0" prefWidth="500.0" promptText="Wallet" />
       <Button contentDisplay="RIGHT" mnemonicParsing="false" onAction="#addExpense" prefHeight="40.0" prefWidth="150.0" text="Add" />
    </children>
    <opaqueInsets>

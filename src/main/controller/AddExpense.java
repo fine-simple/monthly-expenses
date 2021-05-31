@@ -84,12 +84,6 @@ public class AddExpense implements Initializable {
 		}
 
 		Float wallet = WalletDao.getInstance().wallets.get(wallname);
-		if (value > wallet) {
-			Alert alert = new Alert(Alert.AlertType.ERROR);
-			alert.setContentText("Expenses Value is more that Wallet Value");
-			alert.show();
-			return;
-		}
 
 		WalletDao.getInstance().wallets.put(wallname, wallet - value);
 		Expense e = new Expense(tit, value, localdate, wallname, catname);

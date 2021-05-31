@@ -1,7 +1,6 @@
 package main.controller;
 
 import java.net.URL;
-import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 import javafx.collections.FXCollections;
@@ -77,7 +76,8 @@ public class ViewExpenses implements Initializable {
 			System.out.println(entry);
 		}
 	}
-
+	
+	@SuppressWarnings("unchecked")
 	private void loadAndDisplayTable() {
 		// Initialize Table
         TableColumn<Expense, String> titleColumn = new TableColumn<>("Title");

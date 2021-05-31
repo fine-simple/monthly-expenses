@@ -2,6 +2,7 @@ package main.controller;
 
 import java.net.URL;
 import java.time.LocalDate;
+import java.time.YearMonth;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -64,7 +65,7 @@ public class AddIncome implements Initializable {
 		IncomeDao.getInstance().incomes.add(income);
 		
 		//Add to budget
-		WalletDao.getInstance().addToTotal(walletCombo.getValue(), localdate, value);
+		WalletDao.getInstance().addToTotal(walletCombo.getValue(), YearMonth.from(localdate), value);
 		
 		amountText.setText("");
 		Alert alert = new Alert(Alert.AlertType.INFORMATION);

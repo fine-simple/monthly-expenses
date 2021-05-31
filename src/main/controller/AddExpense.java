@@ -2,6 +2,7 @@ package main.controller;
 
 import java.net.URL;
 import java.time.LocalDate;
+import java.time.YearMonth;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -88,7 +89,7 @@ public class AddExpense implements Initializable {
 		Expense e = new Expense(tit, value, localdate, wallname, catname);
 		ExpenseDao.getInstance().expenses.add(e);
 		//Add to budget
-		WalletDao.getInstance().addToTotal(wallname, localdate, -value);
+		WalletDao.getInstance().addToTotal(wallname, YearMonth.from(localdate), -value);
 		amount.setText("");
 		title.setText("");
 		Alert alert = new Alert(Alert.AlertType.INFORMATION);

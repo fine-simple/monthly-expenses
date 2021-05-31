@@ -24,9 +24,18 @@ public class ViewRemaining implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		// Draw Graph at startup
+		drawBarChart();
+	}
+	
+ 	void drawBarChart() {
 		// Get wallets
-		HashMap<String, Float> wallets = WalletDao.getInstance().wallets;
+		HashMap<String, Float> wallets = new HashMap<>();
+		for (var entry : WalletDao.getInstance().wallets.entrySet()) {
+			for (var wallet : entry.getValue().budget.entrySet()) {
+				wallets.put(entry.getKey(), wallets.get(entry.getKey()) + wallet.getValue());
+			}
+		}
+		
 		ArrayList<String> walletsNames = new ArrayList<String>();
 		for (var wallet : wallets.keySet()) {
 			walletsNames.add(wallet);
@@ -49,5 +58,4 @@ public class ViewRemaining implements Initializable {
 		chart.setLegendSide(Side.BOTTOM);
 		chart.getData().add(dataSeries);
 	}
-
 }

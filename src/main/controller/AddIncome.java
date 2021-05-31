@@ -58,11 +58,14 @@ public class AddIncome implements Initializable {
 			alert.show();
 			return;
 		}
-
+		
+		// Add to Incomes
 		Income income = new Income(value, localdate, walletCombo.getValue());
 		IncomeDao.getInstance().incomes.add(income);
-		WalletDao.getInstance().wallets.put(walletCombo.getValue(),
-				WalletDao.getInstance().wallets.get(walletCombo.getValue()) + value);
+		
+		//Add to budget
+		WalletDao.getInstance().addToTotal(walletCombo.getValue(), localdate, value);
+		
 		amountText.setText("");
 		Alert alert = new Alert(Alert.AlertType.INFORMATION);
 		alert.setHeaderText("Income recorded");

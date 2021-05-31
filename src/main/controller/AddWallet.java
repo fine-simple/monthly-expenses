@@ -3,6 +3,7 @@ package main.controller;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
+import main.model.Wallet;
 import main.model.dao.WalletDao;
 
 public class AddWallet {
@@ -26,7 +27,7 @@ public class AddWallet {
 			alert.show();
 			return;
 		}
-		WalletDao.getInstance().wallets.put(wallname, 0f);
+		WalletDao.getInstance().wallets.put(wallname, new Wallet());
 		Alert alert = new Alert(Alert.AlertType.INFORMATION);
 		alert.setHeaderText("Wallet Added");
 		alert.setTitle("Success!");

@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.chart.BarChart?>
-<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
 <?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.VBox?>
@@ -15,14 +14,14 @@
             <Font name="System Bold" size="27.0" />
          </font>
       </Label>
-      <BarChart fx:id="chart" horizontalZeroLineVisible="false" legendSide="LEFT" VBox.vgrow="ALWAYS">
-         <xAxis>
-            <CategoryAxis fx:id="months" label="Wallets" />
-         </xAxis>
-         <yAxis>
-            <NumberAxis fx:id="money" label="Remaining Money $" side="LEFT" />
-         </yAxis>
-      </BarChart>
+      <LineChart fx:id="chart">
+        <xAxis>
+          <NumberAxis fx:id="months" forceZeroInRange="false" lowerBound="200001.0" side="BOTTOM" upperBound="202001.0" />
+        </xAxis>
+        <yAxis>
+          <NumberAxis fx:id="money" lowerBound="-1000.0" side="LEFT" upperBound="1000.0" />
+        </yAxis>
+      </LineChart>
    </children>
    <opaqueInsets>
       <Insets />

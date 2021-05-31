@@ -1,5 +1,6 @@
 package main.model.dao;
 
+import java.time.YearMonth;
 import java.util.ArrayList;
 
 import main.model.Income;
@@ -10,7 +11,18 @@ public class IncomeDao {
     private static IncomeDao instance;
 
     private IncomeDao() {
-        incomes = new ArrayList<>();
+        incomes = new ArrayList<>() {
+            public boolean add(Income income) {
+                super.add(income);
+                WalletDao.getInstance().addToTotal(income.getWallet(), YearMonth.from(income.getDate()), income.getValue());
+                return true;
+            };
+        };
+        
+        // TODO: Add Sample Data
+        // Sample Data
+
+
     }
 
     public static IncomeDao getInstance() {

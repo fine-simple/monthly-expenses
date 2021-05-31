@@ -1,5 +1,6 @@
 package main.model.dao;
 
+import java.time.YearMonth;
 import java.util.ArrayList;
 
 import main.model.Expense;
@@ -9,7 +10,16 @@ public class ExpenseDao {
     private static ExpenseDao instance;
 
     private ExpenseDao() {
-        expenses = new ArrayList<>();
+        expenses = new ArrayList<>() {
+            public boolean add(Expense expense) {
+                super.add(expense);
+                WalletDao.getInstance().addToTotal(expense.getWallet(), YearMonth.from(expense.getDate()), -expense.getPrice());
+                return true;
+            };
+        };
+        // TODO: Add Sample Data
+        //Sample Data
+        
     }
 
     public static ExpenseDao getInstance() {

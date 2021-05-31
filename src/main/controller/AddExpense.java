@@ -2,7 +2,6 @@ package main.controller;
 
 import java.net.URL;
 import java.time.LocalDate;
-import java.time.YearMonth;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -11,7 +10,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-
 import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
@@ -88,8 +86,7 @@ public class AddExpense implements Initializable {
 		// Add to Expenses
 		Expense e = new Expense(tit, value, localdate, wallname, catname);
 		ExpenseDao.getInstance().expenses.add(e);
-		//Add to budget
-		WalletDao.getInstance().addToTotal(wallname, YearMonth.from(localdate), -value);
+
 		amount.setText("");
 		title.setText("");
 		Alert alert = new Alert(Alert.AlertType.INFORMATION);

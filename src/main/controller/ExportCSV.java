@@ -48,7 +48,7 @@ public class ExportCSV {
 	void exportAction() {
 		try {
 			// 1. Writing Expenses
-			FileWriter expensesWriter = new FileWriter(path + "\\expenses.csv");
+			FileWriter expensesWriter = new FileWriter(path + File.separator + "expenses.csv");
 			expensesWriter.write("Date,Title,Price,Category,Wallet\n");
 			for (var expense : ExpenseDao.getInstance().expenses) {
 				expensesWriter.write("\"" + expense.getDate().toString() + "\",\"" + expense.getTitle() + "\",\""
@@ -59,7 +59,7 @@ public class ExportCSV {
 
 			// 2. Writing Income
 			// IncomeDao.getInstance().incomes
-			FileWriter incomeWriter = new FileWriter(path + "\\incomes.csv");
+			FileWriter incomeWriter = new FileWriter(path + File.separator + "incomes.csv");
 			incomeWriter.write("Date,Wallet,Value\n");
 			for (var income : IncomeDao.getInstance().incomes) {
 				incomeWriter.write("\"" + income.getDate().toString() + "\",\"" + income.getWallet() + "\",\""

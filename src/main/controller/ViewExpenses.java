@@ -3,18 +3,20 @@ package main.controller;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 import java.util.ResourceBundle;
-import java.text.DateFormat;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.*;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.ListView;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import main.model.Expense;
-import main.model.Wallet;
 import main.model.dao.CategoryDao;
 import main.model.dao.ExpenseDao;
 import main.model.dao.WalletDao;
@@ -59,6 +61,7 @@ public class ViewExpenses implements Initializable {
 
 	ObservableList<Expense> filteredExpenses = FXCollections.observableArrayList(ExpenseDao.getInstance().expenses);
 	ObservableList<Expense> expenses = FXCollections.observableArrayList(ExpenseDao.getInstance().expenses);
+
 	@FXML
 	void init() {
 		// Initialize Months
@@ -103,288 +106,79 @@ public class ViewExpenses implements Initializable {
 	}
 
 	@FXML
-	void filter(){
+	void filter() {
 		filteredExpenses.clear();
-		// 	Booleans to check which search criteria used
-		boolean isMonth = false, isYear=false, isCategory=false, isWallet=false, isMoney=false;
-		if(month.getValue() != null && !month.getValue().equals("Any")){
-			isMonth=true;
+		// Booleans to check which search criteria used
+		boolean isMonth = false, isYear = false, isCategory = false, isWallet = false, isMoney = false;
+		if (month.getValue() != null && !month.getValue().equals("Any")) {
+			isMonth = true;
 		}
-		if(year.getValue() != null && !year.getValue().equals("Any")){
-			isYear=true;
+		if (year.getValue() != null && !year.getValue().equals("Any")) {
+			isYear = true;
 		}
-		if(category.getValue() != null && !category.getValue().equals("Any")){
-			isCategory=true;
+		if (category.getValue() != null && !category.getValue().equals("Any")) {
+			isCategory = true;
 		}
-		if(wallet.getValue() != null && !wallet.getValue().equals("Any") ){
-			isWallet=true;
+		if (wallet.getValue() != null && !wallet.getValue().equals("Any")) {
+			isWallet = true;
 		}
-		if(!moneyFrom.getText().equals("") && !moneyTo.getText().equals("")){
-			isMoney=true;
+		if (!moneyFrom.getText().equals("") && !moneyTo.getText().equals("")) {
+			isMoney = true;
 		}
-		// Generate all expenses if "Any" is selected in all search criteria
-		if(!isMonth && !isYear && !isCategory && !isWallet && !isMoney){
-			for(int i=0;i<expenses.size();i++){
-				filteredExpenses.add(expenses.get(i));
-			}
+
+		// Copy expenses into filteredExpenses
+		for (int i = 0; i < expenses.size(); i++) {
+			filteredExpenses.add(expenses.get(i));
 		}
-		//Filtration Process (combinations)
+
+		// Filtration Process (combinations)
 		// Month only
-		if(isMonth && !isYear && !isCategory && !isWallet && !isMoney){
-			for(int i=0;i<expenses.size();i++){
-				if (expenses.get(i).getDate().getMonth().toString().equals(month.getValue().toUpperCase())) {
-					filteredExpenses.add(expenses.get(i));
+		if (isMonth) {
+			for (int i = 0; i < filteredExpenses.size(); i++) {
+				if (!(filteredExpenses.get(i).getDate().getMonth().toString().equals(month.getValue().toUpperCase()))) {
+					filteredExpenses.remove(i);
+					i--;
 				}
 			}
 		}
 		// Year only
-		if(!isMonth && isYear && !isCategory && !isWallet && !isMoney){
-			for(int i=0;i<expenses.size();i++){
-				if (expenses.get(i).getDate().getYear() == Integer.parseInt(year.getValue())) {
-					filteredExpenses.add(expenses.get(i));
+		if (isYear) {
+			for (int i = 0; i < filteredExpenses.size(); i++) {
+				if (!(filteredExpenses.get(i).getDate().getYear() == Integer.parseInt(year.getValue()))) {
+					filteredExpenses.remove(i);
+					i--;
 				}
 			}
 		}
 		// Category only
-		if(!isMonth && !isYear && isCategory && !isWallet && !isMoney){
-			System.out.println("HEY I AM IN CAT");
-			for(int i=0;i<expenses.size();i++){
-				if (expenses.get(i).getCategory().equals(category.getValue())) {
-					filteredExpenses.add(expenses.get(i));
+		if (isCategory) {
+			for (int i = 0; i < filteredExpenses.size(); i++) {
+				if (!(filteredExpenses.get(i).getCategory().equals(category.getValue()))) {
+					filteredExpenses.remove(i);
+					i--;
 				}
 			}
 		}
 		// Wallets only
-		if(!isMonth && !isYear && !isCategory && isWallet && !isMoney){
-			for(int i=0;i<expenses.size();i++){
-				if (expenses.get(i).getWallet().equals(wallet.getValue())) {
-					filteredExpenses.add(expenses.get(i));
+		if (isWallet) {
+			for (int i = 0; i < filteredExpenses.size(); i++) {
+				if (!(filteredExpenses.get(i).getWallet().equals(wallet.getValue()))) {
+					filteredExpenses.remove(i);
+					i--;
 				}
 			}
 		}
 		// Money only
-		if(!isMonth && !isYear && !isCategory && !isWallet && isMoney){
-			for(int i=0;i<expenses.size();i++){
-				if (Integer.parseInt(moneyFrom.getText())<=expenses.get(i).getPrice() && Integer.parseInt(moneyTo.getText())>=expenses.get(i).getPrice()) {
-					filteredExpenses.add(expenses.get(i));
+		if (isMoney) {
+			for (int i = 0; i < filteredExpenses.size(); i++) {
+				if (!(Integer.parseInt(moneyFrom.getText()) <= filteredExpenses.get(i).getPrice()
+						&& Integer.parseInt(moneyTo.getText()) >= filteredExpenses.get(i).getPrice())) {
+					filteredExpenses.remove(i);
+					i--;
 				}
 			}
 		}
 
-		//Month & Year
-		if(isMonth && isYear && !isCategory && !isWallet && !isMoney){
-			for(int i=0;i<expenses.size();i++){
-				if (( expenses.get(i).getDate().getMonth().toString().equals(month.getValue().toUpperCase())) && (expenses.get(i).getDate().getYear() == Integer.parseInt(year.getValue()))) {
-					filteredExpenses.add(expenses.get(i));
-				}
-			}
-		}
-		//Month & Category
-		if(isMonth && !isYear && isCategory && !isWallet && !isMoney){
-			for(int i=0;i<expenses.size();i++){
-				if ((expenses.get(i).getDate().getMonth().toString().equals(month.getValue().toUpperCase())) && (expenses.get(i).getCategory().equals(category.getValue()))) {
-					filteredExpenses.add(expenses.get(i));
-				}
-			}
-		}
-		//Month & Wallet
-		if(isMonth && !isYear && !isCategory && isWallet && !isMoney){
-			for(int i=0;i<expenses.size();i++){
-				if ((expenses.get(i).getDate().getMonth().toString().equals(month.getValue().toUpperCase())) && (expenses.get(i).getWallet().equals(wallet.getValue()))) {
-					filteredExpenses.add(expenses.get(i));
-				}
-			}
-		}
-		//Month & Money
-		if(isMonth && !isYear && !isCategory && !isWallet && isMoney){
-			for(int i=0;i<expenses.size();i++){
-				if (expenses.get(i).getDate().getMonth().toString().equals(month.getValue().toUpperCase()) && (Integer.parseInt(moneyFrom.getText())<=expenses.get(i).getPrice() && Integer.parseInt(moneyTo.getText())>=expenses.get(i).getPrice())) {
-					filteredExpenses.add(expenses.get(i));
-				}
-			}
-		}
-
-		//Year && Category
-		if(!isMonth && isYear && isCategory && !isWallet && !isMoney){
-			for(int i=0;i<expenses.size();i++){
-				if (expenses.get(i).getCategory().equals(category.getValue()) && (expenses.get(i).getDate().getYear() == Integer.parseInt(year.getValue()))) {
-					filteredExpenses.add(expenses.get(i));
-				}
-			}
-		}
-		//Year && Wallets
-		if(!isMonth && isYear && !isCategory && isWallet && !isMoney){
-			for(int i=0;i<expenses.size();i++){
-				if (expenses.get(i).getWallet().equals(wallet.getValue()) && (expenses.get(i).getDate().getYear() == Integer.parseInt(year.getValue()))) {
-					filteredExpenses.add(expenses.get(i));
-				}
-			}
-		}
-		//Year && Money
-		if(!isMonth && isYear && !isCategory && !isWallet && isMoney){
-			for(int i=0;i<expenses.size();i++){
-				if (Integer.parseInt(moneyFrom.getText())<=expenses.get(i).getPrice() && Integer.parseInt(moneyTo.getText())>=expenses.get(i).getPrice() && (expenses.get(i).getDate().getYear() == Integer.parseInt(year.getValue()))) {
-					filteredExpenses.add(expenses.get(i));
-				}
-			}
-		}
-
-		//Category & Wallets
-		if(!isMonth && !isYear && isCategory && isWallet && !isMoney){
-			for(int i=0;i<expenses.size();i++){
-				if (expenses.get(i).getWallet().equals(wallet.getValue()) && (expenses.get(i).getCategory().equals(category.getValue()))) {
-					filteredExpenses.add(expenses.get(i));
-				}
-			}
-		}
-		//Category & Money
-		if(!isMonth && !isYear && isCategory && !isWallet && isMoney){
-			for(int i=0;i<expenses.size();i++){
-				if (Integer.parseInt(moneyFrom.getText())<=expenses.get(i).getPrice() && Integer.parseInt(moneyTo.getText())>=expenses.get(i).getPrice() && (expenses.get(i).getCategory().equals(category.getValue()))) {
-					filteredExpenses.add(expenses.get(i));
-				}
-			}
-		}
-
-		//Wallets & Money
-		if(!isMonth && !isYear && !isCategory && isWallet && isMoney){
-			for(int i=0;i<expenses.size();i++){
-				if (expenses.get(i).getWallet().equals(wallet.getValue()) && Integer.parseInt(moneyFrom.getText())<=expenses.get(i).getPrice() && Integer.parseInt(moneyTo.getText())>=expenses.get(i).getPrice()) {
-					filteredExpenses.add(expenses.get(i));
-				}
-			}
-		}
-
-		//Month & Year & Category
-		if(isMonth && isYear && isCategory && !isWallet && !isMoney){
-			for(int i=0;i<expenses.size();i++){
-				if ((expenses.get(i).getDate().getMonth().toString().equals(month.getValue().toUpperCase())) && expenses.get(i).getDate().getYear() == Integer.parseInt(year.getValue()) && expenses.get(i).getCategory().equals(category.getValue())) {
-					filteredExpenses.add(expenses.get(i));
-				}
-			}
-		}
-		//Month & Year && Wallets
-		if(isMonth && isYear && !isCategory && isWallet && !isMoney){
-			for(int i=0;i<expenses.size();i++){
-				if ((expenses.get(i).getDate().getMonth().toString().equals(month.getValue().toUpperCase())) && expenses.get(i).getDate().getYear() == Integer.parseInt(year.getValue()) && expenses.get(i).getWallet().equals(wallet.getValue())) {
-					filteredExpenses.add(expenses.get(i));
-				}
-			}
-		}
-		//Month & Year && Money
-		if(isMonth && isYear && !isCategory && !isWallet && isMoney){
-			for(int i=0;i<expenses.size();i++){
-				if ((expenses.get(i).getDate().getMonth().toString().equals(month.getValue().toUpperCase())) && expenses.get(i).getDate().getYear() == Integer.parseInt(year.getValue()) && Integer.parseInt(moneyFrom.getText())<=expenses.get(i).getPrice() && Integer.parseInt(moneyTo.getText())>=expenses.get(i).getPrice()) {
-					filteredExpenses.add(expenses.get(i));
-				}
-			}
-		}
-		//Month && Category && Wallet
-		if(isMonth && !isYear && isCategory && isWallet && !isMoney){
-			for(int i=0;i<expenses.size();i++){
-				if ((expenses.get(i).getDate().getMonth().toString().equals(month.getValue().toUpperCase())) && expenses.get(i).getWallet().equals(wallet.getValue()) && expenses.get(i).getCategory().equals(category.getValue())) {
-					filteredExpenses.add(expenses.get(i));
-				}
-			}
-		}
-		//Month && Category && Money
-		if(isMonth && !isYear && isCategory && !isWallet && isMoney){
-			for(int i=0;i<expenses.size();i++){
-				if ((expenses.get(i).getDate().getMonth().toString().equals(month.getValue().toUpperCase())) && (Integer.parseInt(moneyFrom.getText())<=expenses.get(i).getPrice() && Integer.parseInt(moneyTo.getText())>=expenses.get(i).getPrice()) && expenses.get(i).getCategory().equals(category.getValue())) {
-					filteredExpenses.add(expenses.get(i));
-				}
-			}
-		}
-		//Month && Wallet && Money
-		if(isMonth && !isYear && !isCategory && isWallet && isMoney){
-			for(int i=0;i<expenses.size();i++){
-				if ((expenses.get(i).getDate().getMonth().toString().equals(month.getValue().toUpperCase())) && (Integer.parseInt(moneyFrom.getText())<=expenses.get(i).getPrice() && Integer.parseInt(moneyTo.getText())>=expenses.get(i).getPrice()) && expenses.get(i).getWallet().equals(wallet.getValue())) {
-					filteredExpenses.add(expenses.get(i));
-				}
-			}
-		}
-
-		//Year & Category & Wallet
-		if(!isMonth && isYear && isCategory && isWallet && !isMoney){
-			for(int i=0;i<expenses.size();i++){
-				if (expenses.get(i).getWallet().equals(wallet.getValue()) && expenses.get(i).getDate().getYear() == Integer.parseInt(year.getValue()) && expenses.get(i).getCategory().equals(category.getValue())) {
-					filteredExpenses.add(expenses.get(i));
-				}
-			}
-		}
-		//Year & Category & Money
-		if(!isMonth && isYear && isCategory && !isWallet && isMoney){
-			for(int i=0;i<expenses.size();i++){
-				if (Integer.parseInt(moneyFrom.getText())<=expenses.get(i).getPrice() && Integer.parseInt(moneyTo.getText())>=expenses.get(i).getPrice() && expenses.get(i).getDate().getYear() == Integer.parseInt(year.getValue()) && expenses.get(i).getCategory().equals(category.getValue())) {
-					filteredExpenses.add(expenses.get(i));
-				}
-			}
-		}
-		//Year & Wallet & Money
-		if(!isMonth && isYear && !isCategory && isWallet && isMoney){
-			for(int i=0;i<expenses.size();i++){
-				if (Integer.parseInt(moneyFrom.getText())<=expenses.get(i).getPrice() && Integer.parseInt(moneyTo.getText())>=expenses.get(i).getPrice() && expenses.get(i).getDate().getYear() == Integer.parseInt(year.getValue()) && expenses.get(i).getWallet().equals(wallet.getValue())) {
-					filteredExpenses.add(expenses.get(i));
-				}
-			}
-		}
-
-		//Category & Wallet & Money
-		if(!isMonth && !isYear && isCategory && isWallet && isMoney){
-			for(int i=0;i<expenses.size();i++){
-				if (expenses.get(i).getWallet().equals(wallet.getValue()) && Integer.parseInt(moneyFrom.getText())<=expenses.get(i).getPrice() && Integer.parseInt(moneyTo.getText())>=expenses.get(i).getPrice() && expenses.get(i).getCategory().equals(category.getValue())) {
-					filteredExpenses.add(expenses.get(i));
-				}
-			}
-		}
-		//Month & Year & Category & Wallet
-		if(isMonth && isYear && isCategory && isWallet && !isMoney){
-			for(int i=0;i<expenses.size();i++){
-				if (expenses.get(i).getWallet().equals(wallet.getValue()) && (expenses.get(i).getDate().getMonth().toString().equals(month.getValue().toUpperCase())) && expenses.get(i).getDate().getYear() == Integer.parseInt(year.getValue()) && expenses.get(i).getCategory().equals(category.getValue())) {
-					filteredExpenses.add(expenses.get(i));
-				}
-			}
-		}
-		//Month & Year & Category & Money
-		if(isMonth && isYear && isCategory && !isWallet && isMoney){
-			for(int i=0;i<expenses.size();i++){
-				if (Integer.parseInt(moneyFrom.getText())<=expenses.get(i).getPrice() && Integer.parseInt(moneyTo.getText())>=expenses.get(i).getPrice() && (expenses.get(i).getDate().getMonth().toString().equals(month.getValue().toUpperCase())) && expenses.get(i).getDate().getYear() == Integer.parseInt(year.getValue()) && expenses.get(i).getCategory().equals(category.getValue())) {
-					filteredExpenses.add(expenses.get(i));
-				}
-			}
-		}
-		//Month & Year & Wallet & Money
-		if(isMonth && isYear && !isCategory && isWallet && isMoney){
-			for(int i=0;i<expenses.size();i++){
-				if (Integer.parseInt(moneyFrom.getText())<=expenses.get(i).getPrice() && Integer.parseInt(moneyTo.getText())>=expenses.get(i).getPrice() && (expenses.get(i).getDate().getMonth().toString().equals(month.getValue().toUpperCase())) && expenses.get(i).getDate().getYear() == Integer.parseInt(year.getValue()) && expenses.get(i).getWallet().equals(wallet.getValue())) {
-					filteredExpenses.add(expenses.get(i));
-				}
-			}
-		}
-		//Month & Category & Wallet & Money
-		if(isMonth && !isYear && isCategory && isWallet && isMoney){
-			for(int i=0;i<expenses.size();i++){
-				if (Integer.parseInt(moneyFrom.getText())<=expenses.get(i).getPrice() && Integer.parseInt(moneyTo.getText())>=expenses.get(i).getPrice() && (expenses.get(i).getDate().getMonth().toString().equals(month.getValue().toUpperCase())) && expenses.get(i).getCategory().equals(category.getValue()) && expenses.get(i).getWallet().equals(wallet.getValue())) {
-					filteredExpenses.add(expenses.get(i));
-				}
-			}
-		}
-		//Year & Category & Wallet & Money
-		if(!isMonth && isYear && isCategory && isWallet && isMoney){
-			for(int i=0;i<expenses.size();i++){
-				if (Integer.parseInt(moneyFrom.getText())<=expenses.get(i).getPrice() && Integer.parseInt(moneyTo.getText())>=expenses.get(i).getPrice() && expenses.get(i).getWallet().equals(wallet.getValue()) && expenses.get(i).getDate().getYear() == Integer.parseInt(year.getValue()) && expenses.get(i).getCategory().equals(category.getValue())) {
-					filteredExpenses.add(expenses.get(i));
-				}
-			}
-		}
-		//Month & Year & Category & Wallet & Money
-		if(isMonth && isYear && isCategory && isWallet && isMoney){
-			for(int i=0;i<expenses.size();i++){
-				if (Integer.parseInt(moneyFrom.getText())<=expenses.get(i).getPrice() && Integer.parseInt(moneyTo.getText())>=expenses.get(i).getPrice()  && expenses.get(i).getWallet().equals(wallet.getValue()) && (expenses.get(i).getDate().getMonth().toString().equals(month.getValue().toUpperCase())) && expenses.get(i).getDate().getYear() == Integer.parseInt(year.getValue()) && expenses.get(i).getCategory().equals(category.getValue())) {
-					filteredExpenses.add(expenses.get(i));
-				}
-			}
-		}
 	}
 
 	@SuppressWarnings("unchecked")
@@ -394,11 +188,9 @@ public class ViewExpenses implements Initializable {
 		titleColumn.setMinWidth(150);
 		titleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
 
-
 		TableColumn<Expense, String> priceColumn = new TableColumn<>("Price");
 		priceColumn.setMinWidth(51);
 		priceColumn.setCellValueFactory(new PropertyValueFactory<>("price"));
-
 
 		TableColumn<Expense, String> dateColumn = new TableColumn<>("Date");
 		dateColumn.setMinWidth(100);
@@ -412,13 +204,12 @@ public class ViewExpenses implements Initializable {
 		walletColumn.setMinWidth(75);
 		walletColumn.setCellValueFactory(new PropertyValueFactory<>("wallet"));
 
-		//get expenses
 
-		//add expenses to table
 		System.out.println(filteredExpenses.size());
+		// add expenses to table
 		table.setItems(filteredExpenses);
 
-		//add columns to table
+		// add columns to table
 		table.getColumns().addAll(titleColumn, priceColumn, dateColumn, categoryColumn, walletColumn);
 	}
 }

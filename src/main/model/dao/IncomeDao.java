@@ -18,11 +18,6 @@ public class IncomeDao {
                 return true;
             };
         };
-        
-        // TODO: Add Sample Data
-        // Sample Data
-
-
     }
 
     public static IncomeDao getInstance() {

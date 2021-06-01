@@ -4,6 +4,11 @@ import javafx.application.Application;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import main.controller.ScreenController;
+import main.debugging.Debugging;
+import main.model.Expense;
+import main.model.Income;
+import main.model.dao.ExpenseDao;
+import main.model.dao.IncomeDao;
 
 /**
  * Main
@@ -11,6 +16,14 @@ import main.controller.ScreenController;
 public class Main extends Application {
 
 	public static void main(String[] args) {
+		//Sample Data
+        for (Expense e : Debugging.getRandomExpenses(20)) {
+            ExpenseDao.getInstance().expenses.add(e);
+        }
+		for (Income i : Debugging.getRandomIncomes(20)) {
+            IncomeDao.getInstance().incomes.add(i);
+        }
+
 		launch(args);
 	}
 

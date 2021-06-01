@@ -4,12 +4,13 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 import main.model.Expense;
+import main.model.Income;
 import main.model.dao.CategoryDao;
 import main.model.dao.ExpenseDao;
 import main.model.dao.IncomeDao;
 import main.model.dao.WalletDao;
 
-public class debugging {
+public class Debugging {
     public static void printAllExpenses() {
         var list = ExpenseDao.getInstance().expenses;
         for(var i : list) {
@@ -39,7 +40,7 @@ public class debugging {
 	}
 
 	static LocalDate getRandomDate() {
-		return LocalDate.of(2020, getRandomNum(1, 12), getRandomNum(1, 28));
+		return LocalDate.of(getRandomNum(2000, LocalDate.now().getYear()), getRandomNum(1, 12), getRandomNum(1, 28));
 	}
 
 	static String getRandomWalletName() {
@@ -49,7 +50,7 @@ public class debugging {
 		}
 		return temp.get(getRandomNum(0, temp.size()-1));
 	}
-    public static void addDebugData(int numOfFakeData) {
+    public static ArrayList<Expense> getRandomExpenses(int numOfFakeData) {
 		// sample expenses
 		EXPENSES_NAMES = new ArrayList<>();
 		EXPENSES_NAMES.add("Mouse");
@@ -70,14 +71,25 @@ public class debugging {
         // WalletDao.getInstance().wallets.put("debugWallet", new Wallet());
         // IncomeDao.getInstance().incomes.add(new Income(10000, LocalDate.now(), "debugWallet"));
         // var income = IncomeDao.getInstance().getAll().get(0);
+		ArrayList<Expense> randomExpenses = new ArrayList<>();
+
 		for (int i = 0; i < numOfFakeData; i++) {
 			if(EXPENSES_NAMES.size()-1 <= 1) {
 				EXPENSES_NAMES = new ArrayList<>(FULL_EXPENSES_NAMES);
 			}
 			String randomCategory = CategoryDao.getInstance().categories.get(getRandomNum(0, CategoryDao.getInstance().categories.size()-1));
-			ExpenseDao.getInstance().expenses.add(new Expense(getEXPENSES_NAME(), getRandomNum(10, 2500), getRandomDate(), getRandomWalletName(), randomCategory));
+			randomExpenses.add(new Expense(getEXPENSES_NAME(), getRandomNum(10, 2500), getRandomDate(), getRandomWalletName(), randomCategory));
 		}
+		return randomExpenses;
     }
+
+	public static ArrayList<Income> getRandomIncomes(int numOfFakeData) {
+		ArrayList<Income> incomes = new ArrayList<>();
+		for (int i = 0; i < numOfFakeData; i++) {
+			incomes.add(new Income(getRandomNum(10, 2500), getRandomDate(), getRandomWalletName()));
+		}
+		return incomes;
+	}
 
     //For testing
 	public static void printAllDate() {

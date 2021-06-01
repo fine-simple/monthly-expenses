@@ -11,7 +11,6 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -24,8 +23,6 @@ import main.model.dao.WalletDao;
 public class ViewExpenses implements Initializable {
 	@FXML
 	TableView<Expense> table;
-	@FXML
-	ListView list;
 	@FXML
 	TextField moneyFrom;
 	@FXML

@@ -2,7 +2,6 @@ package main.controller;
 
 import java.net.URL;
 import java.text.DateFormatSymbols;
-import java.time.YearMonth;
 import java.util.ResourceBundle;
 import java.util.Set;
 import java.util.TreeSet;
@@ -17,7 +16,6 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import main.model.Expense;
-import main.model.Wallet;
 import main.model.dao.CategoryDao;
 import main.model.dao.ExpenseDao;
 import main.model.dao.WalletDao;
@@ -45,12 +43,15 @@ public class ViewExpenses implements Initializable {
 	void filter() {
 		filteredExpenses.clear();
 		for (Expense expense : ExpenseDao.getInstance().expenses) {
-			if ((month.getValue().equals("Any") || month.getValue().toUpperCase().equals(expense.getDate().getMonth().name()))
-					&& (year.getValue().equals("Any") || year.getValue().equals(String.valueOf(expense.getDate().getYear())))
+			if ((month.getValue().equals("Any")
+					|| month.getValue().toUpperCase().equals(expense.getDate().getMonth().name()))
+					&& (year.getValue().equals("Any")
+							|| year.getValue().equals(String.valueOf(expense.getDate().getYear())))
 					&& (category.getValue().equals("Any") || category.getValue().equals(expense.getCategory()))
 					&& (wallet.getValue().equals("Any") || wallet.getValue().equals(expense.getWallet()))
-					&& (moneyFrom.getText().length() < 1 || Float.valueOf(moneyFrom.getText()) <= expense.getPrice())
-					&& (moneyTo.getText().length() < 1 || Float.valueOf(moneyTo.getText()) >= expense.getPrice())) {
+					&& ((moneyFrom.getText().length() < 1)
+							|| (Float.valueOf(moneyFrom.getText()) <= expense.getPrice()))
+					&& ((moneyTo.getText().length() < 1) || (Float.valueOf(moneyTo.getText()) >= expense.getPrice()))) {
 				filteredExpenses.add(expense);
 			}
 		}
@@ -75,16 +76,14 @@ public class ViewExpenses implements Initializable {
 		Set<Integer> yearsList = new TreeSet<>();
 		year.getItems().add("Any");
 
-		for (Wallet wallet : WalletDao.getInstance().wallets.values()) {
-			for (YearMonth yearMonth : wallet.budget.keySet()){
-				yearsList.add(yearMonth.getYear());
-			}
+		for (Expense e : ExpenseDao.getInstance().expenses) {
+			yearsList.add(e.getDate().getYear());
 		}
 
 		for (Integer value : yearsList) {
 			year.getItems().add(String.valueOf(value));
 		}
-		
+
 		year.setValue("Any");
 	}
 

@@ -5,12 +5,21 @@ import java.io.IOException;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 
 public class Navigation {
 
 	@FXML
 	HBox mainHBox;
+
+	@FXML
+	ImageView img;
+
+	@FXML
+	void imgClicked() {
+		ScreenController.getInstance().activate("start_page");
+	}
 
 	@FXML
 	void addIncome() {

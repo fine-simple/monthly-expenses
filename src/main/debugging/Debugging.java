@@ -11,29 +11,29 @@ import main.model.dao.IncomeDao;
 import main.model.dao.WalletDao;
 
 public class Debugging {
-    public static void printAllExpenses() {
-        var list = ExpenseDao.getInstance().expenses;
-        for(var i : list) {
-            System.out.println("Title:");
-            System.out.println(i.getTitle());
-            System.out.println("Price:");
-            System.out.println(i.getPrice());
-            System.out.println("Date:");
-            System.out.println(i.getDate().toString());
-            System.out.println("Wallet:");
-            System.out.println(i.getWallet() + "   " + WalletDao.getInstance().wallets.get(i.getWallet()));
-        }
-    }
+	public static void printAllExpenses() {
+		var list = ExpenseDao.getInstance().expenses;
+		for (var i : list) {
+			System.out.println("Title:");
+			System.out.println(i.getTitle());
+			System.out.println("Price:");
+			System.out.println(i.getPrice());
+			System.out.println("Date:");
+			System.out.println(i.getDate().toString());
+			System.out.println("Wallet:");
+			System.out.println(i.getWallet() + "   " + WalletDao.getInstance().wallets.get(i.getWallet()));
+		}
+	}
 
 	public static int getRandomNum(int min, int max) {
-		return (int) Math.floor(Math.random()*(max-min+1)+min);
+		return (int) Math.floor((Math.random() * ((max - min) + 1)) + min);
 	}
 
 	static ArrayList<String> EXPENSES_NAMES;
 	static ArrayList<String> FULL_EXPENSES_NAMES;
 
 	public static String getEXPENSES_NAME() {
-		var y = getRandomNum(0,EXPENSES_NAMES.size()-1);
+		var y = getRandomNum(0, EXPENSES_NAMES.size() - 1);
 		var x = EXPENSES_NAMES.get(y);
 		EXPENSES_NAMES.remove(y);
 		return x;
@@ -45,12 +45,13 @@ public class Debugging {
 
 	static String getRandomWalletName() {
 		ArrayList<String> temp = new ArrayList<>();
-		for(String i : WalletDao.getInstance().wallets.keySet()) {
+		for (String i : WalletDao.getInstance().wallets.keySet()) {
 			temp.add(i);
 		}
-		return temp.get(getRandomNum(0, temp.size()-1));
+		return temp.get(getRandomNum(0, temp.size() - 1));
 	}
-    public static ArrayList<Expense> getRandomExpenses(int numOfFakeData) {
+
+	public static ArrayList<Expense> getRandomExpenses(int numOfFakeData) {
 		// sample expenses
 		EXPENSES_NAMES = new ArrayList<>();
 		EXPENSES_NAMES.add("Mouse");
@@ -66,32 +67,34 @@ public class Debugging {
 		EXPENSES_NAMES.add("HeadPhones");
 		// EXPENSES_NAMES.add("");
 		FULL_EXPENSES_NAMES = new ArrayList<>(EXPENSES_NAMES);
-		
 
-        // WalletDao.getInstance().wallets.put("debugWallet", new Wallet());
-        // IncomeDao.getInstance().incomes.add(new Income(10000, LocalDate.now(), "debugWallet"));
-        // var income = IncomeDao.getInstance().getAll().get(0);
+		// WalletDao.getInstance().wallets.put("debugWallet", new Wallet());
+		// IncomeDao.getInstance().incomes.add(new Income(10000, LocalDate.now(),
+		// "debugWallet"));
+		// var income = IncomeDao.getInstance().getAll().get(0);
 		ArrayList<Expense> randomExpenses = new ArrayList<>();
 
 		for (int i = 0; i < numOfFakeData; i++) {
-			if(EXPENSES_NAMES.size()-1 <= 1) {
+			if ((EXPENSES_NAMES.size() - 1) <= 1) {
 				EXPENSES_NAMES = new ArrayList<>(FULL_EXPENSES_NAMES);
 			}
-			String randomCategory = CategoryDao.getInstance().categories.get(getRandomNum(0, CategoryDao.getInstance().categories.size()-1));
-			randomExpenses.add(new Expense(getEXPENSES_NAME(), getRandomNum(10, 2500), getRandomDate(), getRandomWalletName(), randomCategory));
+			String randomCategory = CategoryDao.getInstance().categories
+					.get(getRandomNum(0, CategoryDao.getInstance().categories.size() - 1));
+			randomExpenses.add(new Expense(getEXPENSES_NAME(), getRandomNum(10, 1500), getRandomDate(),
+					getRandomWalletName(), randomCategory));
 		}
 		return randomExpenses;
-    }
+	}
 
 	public static ArrayList<Income> getRandomIncomes(int numOfFakeData) {
 		ArrayList<Income> incomes = new ArrayList<>();
 		for (int i = 0; i < numOfFakeData; i++) {
-			incomes.add(new Income(getRandomNum(10, 2500), getRandomDate(), getRandomWalletName()));
+			incomes.add(new Income(getRandomNum(500, 8000), getRandomDate(), getRandomWalletName()));
 		}
 		return incomes;
 	}
 
-    //For testing
+	// For testing
 	public static void printAllDate() {
 		// System.out.print("\033[H\033[2J");
 		System.out.flush();
@@ -111,7 +114,8 @@ public class Debugging {
 		System.out.println("-------------------------------------------------------------------\n");
 		System.out.println("Expenses:");
 		for (var expense : ExpenseDao.getInstance().expenses) {
-				System.out.println(expense.getTitle() + " - " + expense.getDate() + " - " + expense.getPrice() + " - " + expense.getCategory() + " - " + expense.getWallet());
+			System.out.println(expense.getTitle() + " - " + expense.getDate() + " - " + expense.getPrice() + " - "
+					+ expense.getCategory() + " - " + expense.getWallet());
 		}
 
 		System.out.println("-------------------------------------------------------------------\n");

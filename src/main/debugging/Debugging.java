@@ -26,14 +26,14 @@ public class Debugging {
     }
 
 	public static int getRandomNum(int min, int max) {
-		return (int) Math.floor(Math.random()*(max-min+1)+min);
+		return (int) Math.floor((Math.random() * ((max - min) + 1)) + min);
 	}
 
 	static ArrayList<String> EXPENSES_NAMES;
 	static ArrayList<String> FULL_EXPENSES_NAMES;
 
 	public static String getEXPENSES_NAME() {
-		var y = getRandomNum(0,EXPENSES_NAMES.size()-1);
+		var y = getRandomNum(0, EXPENSES_NAMES.size() - 1);
 		var x = EXPENSES_NAMES.get(y);
 		EXPENSES_NAMES.remove(y);
 		return x;
@@ -45,10 +45,10 @@ public class Debugging {
 
 	static String getRandomWalletName() {
 		ArrayList<String> temp = new ArrayList<>();
-		for(String i : WalletDao.getInstance().wallets.keySet()) {
+		for (String i : WalletDao.getInstance().wallets.keySet()) {
 			temp.add(i);
 		}
-		return temp.get(getRandomNum(0, temp.size()-1));
+		return temp.get(getRandomNum(0, temp.size() - 1));
 	}
     public static ArrayList<Expense> getRandomExpenses(int numOfFakeData) {
 		// sample expenses
@@ -66,7 +66,6 @@ public class Debugging {
 		EXPENSES_NAMES.add("HeadPhones");
 		// EXPENSES_NAMES.add("");
 		FULL_EXPENSES_NAMES = new ArrayList<>(EXPENSES_NAMES);
-		
 
         // WalletDao.getInstance().wallets.put("debugWallet", new Wallet());
         // IncomeDao.getInstance().incomes.add(new Income(10000, LocalDate.now(), "debugWallet"));
@@ -74,7 +73,7 @@ public class Debugging {
 		ArrayList<Expense> randomExpenses = new ArrayList<>();
 
 		for (int i = 0; i < numOfFakeData; i++) {
-			if(EXPENSES_NAMES.size()-1 <= 1) {
+			if ((EXPENSES_NAMES.size() - 1) <= 1) {
 				EXPENSES_NAMES = new ArrayList<>(FULL_EXPENSES_NAMES);
 			}
 			String randomCategory = CategoryDao.getInstance().categories.get(getRandomNum(0, CategoryDao.getInstance().categories.size()-1));
@@ -111,7 +110,8 @@ public class Debugging {
 		System.out.println("-------------------------------------------------------------------\n");
 		System.out.println("Expenses:");
 		for (var expense : ExpenseDao.getInstance().expenses) {
-				System.out.println(expense.getTitle() + " - " + expense.getDate() + " - " + expense.getPrice() + " - " + expense.getCategory() + " - " + expense.getWallet());
+			System.out.println(expense.getTitle() + " - " + expense.getDate() + " - " + expense.getPrice() + " - "
+					+ expense.getCategory() + " - " + expense.getWallet());
 		}
 
 		System.out.println("-------------------------------------------------------------------\n");

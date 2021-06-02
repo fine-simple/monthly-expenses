@@ -13,17 +13,15 @@ public class ExpenseDao {
         expenses = new ArrayList<>() {
             public boolean add(Expense expense) {
                 super.add(expense);
-                WalletDao.getInstance().addToTotal(expense.getWallet(), YearMonth.from(expense.getDate()), -expense.getPrice());
+                WalletDao.getInstance().addToTotal(expense.getWallet(), YearMonth.from(expense.getDate()),
+                        -expense.getPrice());
                 return true;
             };
         };
-        // TODO: Add Sample Data
-        //Sample Data
-        
     }
 
     public static ExpenseDao getInstance() {
-        if(instance == null)
+        if (instance == null)
             instance = new ExpenseDao();
         return instance;
     }

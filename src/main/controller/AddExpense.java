@@ -17,6 +17,7 @@ import javafx.scene.control.TextField;
 import main.model.Expense;
 import main.model.dao.CategoryDao;
 import main.model.dao.ExpenseDao;
+import main.model.dao.IncomeDao;
 import main.model.dao.WalletDao;
 
 public class AddExpense implements Initializable {
@@ -84,8 +85,21 @@ public class AddExpense implements Initializable {
 		}
 
 		// Add to Expenses
-		Expense e = new Expense(tit, value, localdate, wallname, catname);
+              
+             
+               if(value>WalletDao.getInstance().gettotal(wallname))
+               {
+                   Alert alert = new Alert(Alert.AlertType.INFORMATION);
+		   alert.setHeaderText("Expense recorded");
+                   alert.setTitle("Warning!! ");
+                   alert.setContentText("you don't have enough money, It will be added to the debt");
+                   alert.showAndWait();
+               }
+               
+                 Expense e = new Expense(tit, value, localdate, wallname, catname);
 		ExpenseDao.getInstance().expenses.add(e);
+                   System.out.println(WalletDao.getInstance().gettotal(wallname));
+
 
 		amount.setText("");
 		title.setText("");

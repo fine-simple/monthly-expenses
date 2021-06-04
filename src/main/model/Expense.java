@@ -1,6 +1,7 @@
 package main.model;
 
 import java.time.LocalDate;
+import main.model.dao.WalletDao;
 
 public class Expense {
     private String title;
@@ -15,6 +16,7 @@ public class Expense {
         this.date = date;
         this.wallet = wallet;
         this.category = category;
+          
     }
 
     public String getWallet() {

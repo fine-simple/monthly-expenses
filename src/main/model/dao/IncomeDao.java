@@ -4,6 +4,7 @@ import java.time.YearMonth;
 import java.util.ArrayList;
 
 import main.model.Income;
+import main.model.Wallet;
 
 public class IncomeDao {
     public final ArrayList<Income> incomes;
@@ -15,6 +16,8 @@ public class IncomeDao {
             public boolean add(Income income) {
                 super.add(income);
                 WalletDao.getInstance().addToTotal(income.getWallet(), YearMonth.from(income.getDate()), income.getValue());
+                 Wallet wall= WalletDao.getInstance().wallets.get(income.getWallet());
+                  wall.total+=income.getValue();
                 return true;
             };
         };
@@ -25,4 +28,5 @@ public class IncomeDao {
             instance = new IncomeDao();
         return instance;
     }
+
 }

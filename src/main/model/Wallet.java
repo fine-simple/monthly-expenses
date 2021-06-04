@@ -6,8 +6,10 @@ import java.util.TreeMap;
 
 public class Wallet {
    public final Map<YearMonth, Float> budget;
+   public float total;
 
    public Wallet() {
        budget = new TreeMap<>();
+       
    }
 }

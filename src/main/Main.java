@@ -17,12 +17,12 @@ public class Main extends Application {
 
 	public static void main(String[] args) {
 		//Sample Data
-        for (Expense e : Debugging.getRandomExpenses(20)) {
-            ExpenseDao.getInstance().expenses.add(e);
-        }
-		for (Income i : Debugging.getRandomIncomes(20)) {
-            IncomeDao.getInstance().incomes.add(i);
-        }
+      //  for (Expense e : Debugging.getRandomExpenses(20)) {
+      //      ExpenseDao.getInstance().expenses.add(e);
+    //    }
+	//	for (Income i : Debugging.getRandomIncomes(20)) {
+      //      IncomeDao.getInstance().incomes.add(i);
+      //  }
 
 		launch(args);
 	}

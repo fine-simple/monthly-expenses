@@ -4,6 +4,7 @@ import java.time.YearMonth;
 import java.util.ArrayList;
 
 import main.model.Expense;
+import main.model.Wallet;
 
 public class ExpenseDao {
     public final ArrayList<Expense> expenses;
@@ -15,6 +16,8 @@ public class ExpenseDao {
                 super.add(expense);
                 WalletDao.getInstance().addToTotal(expense.getWallet(), YearMonth.from(expense.getDate()),
                         -expense.getPrice());
+                Wallet wall= WalletDao.getInstance().wallets.get(expense.getWallet());
+                 wall.total-=expense.getPrice();
                 return true;
             };
         };

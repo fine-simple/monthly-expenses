@@ -62,6 +62,7 @@ public class AddIncome implements Initializable {
 		// Add to Incomes
 		Income income = new Income(value, localdate, walletCombo.getValue());
 		IncomeDao.getInstance().incomes.add(income);
+                
 		
 		amountText.setText("");
 		Alert alert = new Alert(Alert.AlertType.INFORMATION);

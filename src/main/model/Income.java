@@ -1,6 +1,7 @@
 package main.model;
 
 import java.time.LocalDate;
+import main.model.dao.WalletDao;
 
 public class Income {
     private float value;
@@ -10,6 +11,8 @@ public class Income {
         this.value = value;
         this.date = date;
         this.wallet = wallet;
+      
+        
     }
 
     public float getValue() {

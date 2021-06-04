@@ -98,7 +98,6 @@ public class AddExpense implements Initializable {
                
                  Expense e = new Expense(tit, value, localdate, wallname, catname);
 		ExpenseDao.getInstance().expenses.add(e);
-                   System.out.println(WalletDao.getInstance().gettotal(wallname));
 
 
 		amount.setText("");

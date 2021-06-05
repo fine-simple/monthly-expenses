@@ -6,10 +6,11 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="500.0" prefWidth="624.0" stylesheets="@../stylesheets/dark-theme.css" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controller.StartPage">
+<AnchorPane prefHeight="500.0" prefWidth="624.0" stylesheets="@../stylesheets/dark-theme.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controller.StartPage">
    <children>
       <VBox alignment="TOP_CENTER" maxHeight="500.0" maxWidth="700.0" minHeight="500.0" minWidth="582.0" prefHeight="500.0" prefWidth="700.0" spacing="20.0">
          <children>
@@ -26,49 +27,54 @@
                   <Font name="System Bold" size="27.0" />
                </font>
                <padding>
-                  <Insets top="-20.0" />
+                  <Insets bottom="-20.0" />
                </padding>
             </Label>
-            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="5.0">
+            <HBox>
                <children>
-                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="35.0" prefWidth="294.0" text="1. Ahmed Tawfik">
-                     <VBox.margin>
-                        <Insets />
-                     </VBox.margin>
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                  </Label>
-                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="35.0" prefWidth="294.0" text="2. Omar AbdulRahman">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                  </Label>
-                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="35.0" prefWidth="294.0" text="3. Shehab Ihab">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                  </Label>
-                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="35.0" prefWidth="294.0" text="4. Mohamed Yasser">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                  </Label>
-                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="35.0" prefWidth="294.0" text="5. Salma El Sayed">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                  </Label>
-                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="35.0" prefWidth="294.0" text="6. Sondos Akram">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                  </Label>
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="5.0" HBox.hgrow="ALWAYS">
+                     <children>
+                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="35.0" prefWidth="294.0" text="• Ahmed Tawfik">
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="35.0" prefWidth="294.0" text="• Shehab Ihab">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="35.0" prefWidth="294.0" text="• Mohamed Yasser">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="5.0" HBox.hgrow="ALWAYS">
+                     <children>
+                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="35.0" prefWidth="294.0" text="• Salma El Sayed">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="35.0" prefWidth="294.0" text="• Sondos Akram">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="35.0" prefWidth="294.0" text="• Omar AbdulRahman">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </VBox>
                </children>
-               <VBox.margin>
-                  <Insets top="-5.0" />
-               </VBox.margin>
-            </VBox>
+            </HBox>
             <Label text="© TEAM GEN_1">
                <font>
                   <Font size="16.0" />

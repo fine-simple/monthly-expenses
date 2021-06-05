@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" maxHeight="563.0" maxWidth="700.0" minHeight="427.0" minWidth="530.0" prefHeight="563.0" prefWidth="658.0" spacing="10.0" stylesheets="@../stylesheets/dark-theme.css" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controller.ViewRemaining">
+<VBox alignment="CENTER" maxHeight="563.0" maxWidth="700.0" minHeight="427.0" minWidth="530.0" prefHeight="563.0" prefWidth="660.0" spacing="10.0" stylesheets="@../stylesheets/dark-theme.css" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controller.ViewRemaining">
    <children>
       <Label alignment="CENTER" minWidth="400.0" text="Remaining Money" VBox.vgrow="ALWAYS">
          <font>

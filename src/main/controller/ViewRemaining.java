@@ -48,7 +48,7 @@ public class ViewRemaining implements Initializable {
 		
 		for (var entry : WalletDao.getInstance().wallets.entrySet()) {
 			XYChart.Series<Number, Number> line = new XYChart.Series<>();
-			line.setName(entry.getKey());
+			line.setName(entry.getKey() + "(" + String.format("%,.2f", entry.getValue().total) + "$)");
 			for (var wallet : entry.getValue().budget.entrySet()) {
 				line.getData().add(new XYChart.Data<>(dateToNumber(wallet.getKey()), wallet.getValue()));
 			}

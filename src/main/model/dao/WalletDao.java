@@ -2,12 +2,11 @@ package main.model.dao;
 
 import java.time.YearMonth;
 import java.util.HashMap;
-import java.util.Map;
 
 import main.model.Wallet;
 
 public class WalletDao {
-    public final Map<String, Wallet> wallets;
+    public final HashMap<String, Wallet> wallets;
 
     private static WalletDao instance;
     public static WalletDao getInstance() {

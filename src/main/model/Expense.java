@@ -1,7 +1,6 @@
 package main.model;
 
 import java.time.LocalDate;
-import main.model.dao.WalletDao;
 
 public class Expense {
     private String title;

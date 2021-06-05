@@ -17,7 +17,6 @@ import javafx.scene.control.TextField;
 import main.model.Expense;
 import main.model.dao.CategoryDao;
 import main.model.dao.ExpenseDao;
-import main.model.dao.IncomeDao;
 import main.model.dao.WalletDao;
 
 public class AddExpense implements Initializable {
